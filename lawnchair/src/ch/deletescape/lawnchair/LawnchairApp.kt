@@ -39,6 +39,7 @@ import com.android.launcher3.BuildConfig
 import com.android.launcher3.R
 import com.android.launcher3.Utilities
 import com.android.quickstep.RecentsActivity
+import com.facebook.ads.AudienceNetworkAds
 //import com.squareup.leakcanary.LeakCanary
 import ninja.sesame.lib.bridge.v1.SesameFrontend
 import ninja.sesame.lib.bridge.v1.SesameInitOnComplete
@@ -58,6 +59,7 @@ class LawnchairApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        AudienceNetworkAds.initialize(this);
 //        if (BuildConfig.HAS_LEAKCANARY && lawnchairPrefs.initLeakCanary) {
 //            if (LeakCanary.isInAnalyzerProcess(this)) {
 //                // This process is dedicated to LeakCanary for heap analysis.

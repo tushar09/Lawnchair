@@ -63,6 +63,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import ch.deletescape.lawnchair.FakeLauncherKt;
 import ch.deletescape.lawnchair.FeedBridge;
 import ch.deletescape.lawnchair.LawnchairLauncher;
@@ -100,6 +101,12 @@ import com.android.launcher3.util.ContentWriter;
 import com.android.launcher3.util.ContentWriter.CommitParams;
 import com.android.launcher3.util.SettingsObserver;
 import com.android.launcher3.views.ButtonPreference;
+import com.facebook.ads.AbstractAdListener;
+import com.facebook.ads.Ad;
+import com.facebook.ads.AdError;
+import com.facebook.ads.AdSize;
+import com.facebook.ads.AdView;
+import com.facebook.ads.InterstitialAd;
 import com.google.android.apps.nexuslauncher.reflection.ReflectionClient;
 import java.io.IOException;
 import java.util.Objects;
@@ -148,6 +155,8 @@ public class SettingsActivity extends SettingsBaseActivity implements
 
     private boolean hasPreview = false;
 
+    private InterstitialAd interstitialAd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         savedInstanceState = getRelaunchInstanceState(savedInstanceState);
@@ -186,6 +195,14 @@ public class SettingsActivity extends SettingsBaseActivity implements
         }
 
         Utilities.getDevicePrefs(this).edit().putBoolean(OnboardingProvider.PREF_HAS_OPENED_SETTINGS, true).apply();
+
+        AdView adView = new AdView(this, "1238753982967772_1801533253356506", AdSize.BANNER_HEIGHT_50);
+        LinearLayout adContainer = (LinearLayout) findViewById(R.id.banner_container);
+        adContainer.addView(adView);
+        adView.loadAd();
+
+        interstitialAd = new InterstitialAd(this, "1238753982967772_1238768376299666");
+        interstitialAd.loadAd();
     }
 
     @Override
@@ -371,6 +388,14 @@ public class SettingsActivity extends SettingsBaseActivity implements
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if(interstitialAd.isAdLoaded()){
+            interstitialAd.show();
+        }
     }
 
     @Override
