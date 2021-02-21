@@ -376,7 +376,7 @@
     <string name="action_none">Do Nothing</string>
     <string name="action_sleep">Sleep</string>
     <string name="action_sleep_timeout">Sleep Using Screen Timeout</string>
-    <string name="action_open_settings">Open Lawnchair Settings</string>
+    <string name="action_open_settings" translatable="false">Open Launcher Settings</string>
     <string name="action_open_notifications">Open Notification Panel</string>
     <string name="action_overlay">Open Google Feed</string>
     <string name="action_despacito">Play “YouTube Rewind 2018” (Distorted)</string>
@@ -403,7 +403,7 @@
     <string name="name">Name</string>
 
     <string name="backup_location">Location</string>
-    <string name="backup_location_device_storage">“Lawnchair” Folder</string>
+    <string name="backup_location_device_storage" translatable="false">“Launcher” Folder</string>
     <string name="custom">Custom</string>
 
     <!-- Section 11 -->
@@ -462,7 +462,7 @@
     <string name="suggested_action_content_description">“%1$s” opens in “%2$s”.</string>
 
     <string name="smartspace_setup_text">Tap to Set Up</string>
-    <string name="lawnchair_settings">Lawnchair Settings</string>
+    <string name="lawnchair_settings" translatable="false">Launcher Settings</string>
 
     <string name="label_voice_search">Voice Search</string>
     <string name="icon_pack">Icon Pack</string>
@@ -473,7 +473,7 @@
     <string name="title_disable_suggestions_prompt">Disable App Suggestions</string>
     <string name="msg_disable_suggestions_prompt">"Usage data will be deleted."</string>
 
-    <string name="app_name_lawnchair">Lawnchair</string>
+    <string name="app_name_lawnchair" translatable="false">Launcher</string>
     <string name="pixel_style_pref_title">Google Pixel</string>
 
     <string name="label_turn_off_suggestions">Disable</string>
@@ -508,7 +508,7 @@
     <string name="restore_success">Backup restored.</string>
     <string name="failed">Something went wrong.</string>
 
-    <string name="backup_share_text">Lawnchair Backup</string>
+    <string name="backup_share_text" translatable="false">Launcher Backup</string>
 
     <string name="developer_options_enabled">Developer Options enabled.</string>
     <string name="restart_lawnchair_pref_summary">Reapply settings.</string>
@@ -557,13 +557,13 @@
     <string name="about_our_contributors">Contributors</string>
     <string name="about_our_family">Family Members</string>
 
-    <string name="about_bio_deletescape">Kotlin/Java developer. Interested in everything Android. Founder of the Lawnchair and dogbin projects.</string>
+    <string name="about_bio_deletescape">Kotlin/Java developer. Interested in everything Android. Founder of the Launcher and dogbin projects.</string>
     <string name="about_bio_recoded">Mild coder and graphics designer.</string>
     <string name="about_bio_josh">Freelance graphic designer.</string>
     <string name="about_bio_harsh">Android application and library developer. Core developer at AOSiP.</string>
-    <string name="about_bio_david">19 years old, turns caffeine and pizza into code, provides hosting and 24/7 support for Lawnchair if something goes wrong. Contributes to open-source projects and fixes bugs during his free time. Also previously known as Codebucket.</string>
+    <string name="about_bio_david">19 years old, turns caffeine and pizza into code, provides hosting and 24/7 support for Launcher if something goes wrong. Contributes to open-source projects and fixes bugs during his free time. Also previously known as Codebucket.</string>
     <string name="about_bio_lumiq">It’s just got harder to build a bad product.</string>
-    <string name="about_bio_paphonb">A 18-year-old student, Android Developer and one of the top developers at Lawnchair Launcher.</string>
+    <string name="about_bio_paphonb">A 18-year-old student, Android Developer and one of the top developers at Launcher Launcher.</string>
 
     <string name="debug_crash_launcher">Force Stop</string>
 
@@ -721,7 +721,7 @@
 
     <string name="weather_provider_accu" translatable="false">AccuWeather</string>
 
-    <string name="lawnchair_bug_report">Lawnchair Bug Report</string>
+    <string name="lawnchair_bug_report" translatable="false">Launcher Bug Report</string>
     <string name="action_dogbin_upload">Upload to Dogbin</string>
 
     <string name="action_dogbin_copy_link">Copy Link</string>
