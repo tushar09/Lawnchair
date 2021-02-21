@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "960036916838",
+    "firebase_url": "https://pixel-launcher-4db88.firebaseio.com",
+    "project_id": "pixel-launcher-4db88",
+    "storage_bucket": "pixel-launcher-4db88.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:960036916838:android:ae2a50f47599a92a",
+        "android_client_info": {
+          "package_name": "com.tushar.launcher3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "960036916838-3fgfmejnql75uj01u0jioujtjhrcqj6g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tushar.launcher3",
+            "certificate_hash": "447b3f7ce1ea2645ac1ae24f6edb51ae6f354cf8"
+          }
+        },
+        {
+          "client_id": "960036916838-84tbo6qifssdbnbr0cvglrp4lbigj91u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tushar.launcher3",
+            "certificate_hash": "51496fc49e69ccc7b47930b557c4d726da0c7531"
+          }
+        },
+        {
+          "client_id": "960036916838-sa6j99citv9r2bso2ics7a0qb4jr5eq5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9qyCkFDSOGEQJt2xXt0CfU6kIUO9QMYE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "960036916838-sa6j99citv9r2bso2ics7a0qb4jr5eq5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
