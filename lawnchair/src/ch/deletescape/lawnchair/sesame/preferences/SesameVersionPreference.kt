@@ -18,7 +18,7 @@
 package ch.deletescape.lawnchair.sesame.preferences
 
 import android.content.Context
-import android.support.v7.preference.Preference
+import androidx.preference.Preference
 import android.util.AttributeSet
 import ch.deletescape.lawnchair.sesame.Sesame
 import ninja.sesame.lib.bridge.v1.SesameFrontend

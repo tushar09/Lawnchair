@@ -23,7 +23,7 @@ import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.VectorDrawable
 import android.os.Process
-import android.support.v7.graphics.Palette
+import androidx.palette.graphics.Palette
 import ch.deletescape.lawnchair.*
 import ch.deletescape.lawnchair.colors.ColorEngine
 import ch.deletescape.lawnchair.iconpack.LawnchairIconProvider
@@ -107,7 +107,8 @@ class SesameShortcutInfo(private val context: Context, private val shortcut: Ses
             if (activities.isNotEmpty()) {
                 val icon = context.launcherAppState.iconCache.getFullResIcon(activities[0]).toBitmap()
                 if (icon != null) {
-                    val pal = Palette.from(icon).generate()
+                    val pal = androidx.palette.graphics.Palette
+                            .from(icon).generate()
                     // Return a random color from a reduced palette
                      return@getOrPut listOfNotNull(pal.dominantSwatch,
                             pal.vibrantSwatch,

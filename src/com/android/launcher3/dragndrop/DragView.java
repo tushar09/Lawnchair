@@ -38,9 +38,9 @@ import android.graphics.drawable.InsetDrawable;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.animation.FloatPropertyCompat;
-import android.support.animation.SpringAnimation;
-import android.support.animation.SpringForce;
+import androidx.dynamicanimation.animation.FloatPropertyCompat;
+import androidx.dynamicanimation.animation.SpringAnimation;
+import androidx.dynamicanimation.animation.SpringForce;
 import android.view.View;
 
 import ch.deletescape.lawnchair.LawnchairPreferences;
@@ -48,12 +48,10 @@ import ch.deletescape.lawnchair.iconpack.AdaptiveIconCompat;
 import ch.deletescape.lawnchair.iconpack.IconPackManager;
 import ch.deletescape.lawnchair.iconpack.LawnchairIconProvider;
 import com.android.launcher3.*;
-import com.android.launcher3.LauncherSettings.Favorites;
 import com.android.launcher3.anim.Interpolators;
 import com.android.launcher3.compat.LauncherAppsCompat;
 import com.android.launcher3.compat.ShortcutConfigActivityInfo;
 import com.android.launcher3.config.FeatureFlags;
-import com.android.launcher3.graphics.IconNormalizer;
 import com.android.launcher3.graphics.LauncherIcons;
 import com.android.launcher3.shortcuts.DeepShortcutManager;
 import com.android.launcher3.shortcuts.ShortcutInfoCompat;
@@ -64,8 +62,6 @@ import com.android.launcher3.widget.PendingAddShortcutInfo;
 
 import java.util.Arrays;
 import java.util.List;
-
-import static com.android.launcher3.ItemInfoWithIcon.FLAG_ICON_BADGED;
 
 public class DragView extends View {
     private static final ColorMatrix sTempMatrix1 = new ColorMatrix();

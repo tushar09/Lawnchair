@@ -26,14 +26,12 @@ import android.os.Bundle;
 import android.os.Process;
 import android.os.StrictMode;
 import android.os.UserHandle;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
 import android.view.ActionMode;
 import android.view.View;
 import android.widget.Toast;
 
-import ch.deletescape.lawnchair.sesame.Sesame;
-import ch.deletescape.lawnchair.sesame.SesameShortcutInfo;
 import ch.deletescape.lawnchair.theme.ThemeOverride;
 import ch.deletescape.lawnchair.theme.ThemeOverride.ThemeSet;
 import com.android.launcher3.LauncherSettings.Favorites;
@@ -43,8 +41,6 @@ import com.android.launcher3.uioverrides.DisplayRotationListener;
 import com.android.launcher3.uioverrides.WallpaperColorInfo;
 import com.android.launcher3.shortcuts.DeepShortcutManager;
 import com.android.launcher3.views.BaseDragLayer;
-import ninja.sesame.lib.bridge.v1.SesameFrontend;
-import ninja.sesame.lib.bridge.v1.ShortcutAction;
 
 /**
  * Extension of BaseActivity allowing support for drag-n-drop

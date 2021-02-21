@@ -18,8 +18,8 @@
 package ch.deletescape.lawnchair.preferences
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.RecyclerView
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,5 +38,5 @@ abstract class RecyclerViewFragment : Fragment() {
         onRecyclerViewCreated(view.findViewById(R.id.list))
     }
 
-    abstract fun onRecyclerViewCreated(recyclerView: RecyclerView)
+    abstract fun onRecyclerViewCreated(recyclerView: androidx.recyclerview.widget.RecyclerView)
 }

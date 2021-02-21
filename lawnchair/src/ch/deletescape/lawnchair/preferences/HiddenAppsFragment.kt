@@ -18,9 +18,9 @@
 package ch.deletescape.lawnchair.preferences
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.*
 import ch.deletescape.lawnchair.LawnchairAppFilter
 import com.android.launcher3.R
@@ -35,12 +35,15 @@ class HiddenAppsFragment : RecyclerViewFragment(), SelectableAppsAdapter.Callbac
         setHasOptionsMenu(true)
     }
 
-    override fun onRecyclerViewCreated(recyclerView: RecyclerView) {
+    override fun onRecyclerViewCreated(recyclerView: androidx.recyclerview.widget.RecyclerView) {
         val context = recyclerView.context
         adapter = SelectableAppsAdapter.ofProperty(context,
                 Utilities.getLawnchairPrefs(context)::hiddenAppSet, this, LawnchairAppFilter(context))
         recyclerView.setHasFixedSize(true)
-        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        recyclerView.layoutManager =
+                androidx.recyclerview.widget.LinearLayoutManager(context,
+                                                                 androidx.recyclerview.widget.LinearLayoutManager.VERTICAL,
+                                                                 false)
         recyclerView.adapter = adapter
     }
 

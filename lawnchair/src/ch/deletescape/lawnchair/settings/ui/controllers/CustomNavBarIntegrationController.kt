@@ -20,7 +20,7 @@
 package ch.deletescape.lawnchair.settings.ui.controllers
 
 import android.content.Context
-import android.support.annotation.Keep
+import androidx.annotation.Keep
 import ch.deletescape.lawnchair.customnavbar.CustomNavBar
 import ch.deletescape.lawnchair.lawnchairApp
 import ch.deletescape.lawnchair.settings.ui.PreferenceController

@@ -24,7 +24,7 @@ import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.content.res.XmlResourceParser;
 import android.graphics.Point;
-import android.support.annotation.VisibleForTesting;
+import androidx.annotation.VisibleForTesting;
 import android.util.DisplayMetrics;
 import android.util.Xml;
 import android.view.Display;
@@ -84,12 +84,12 @@ public class InvariantDeviceProfile {
      */
     public int numFolderRows;
     public int numFolderColumns;
-    public float iconSize;
-    public float iconSizeOriginal;
+    public float iconSizeX;
+    public float iconSizeXOriginal;
     public float hotseatIconSize;
     public float hotseatIconSizeOriginal;
-    public float landscapeIconSize;
-    public float landscapeIconSizeOriginal;
+    public float landscapeIconSizeX;
+    public float landscapeIconSizeXOriginal;
     public float landscapeHotseatIconSize;
     public float landscapeHotseatIconSizeOriginal;
     public float allAppsIconSize;
@@ -121,7 +121,7 @@ public class InvariantDeviceProfile {
     private InvariantDeviceProfile(InvariantDeviceProfile p) {
         this(p.name, p.minWidthDps, p.minHeightDps, p.numRows, p.numColumns,
                 p.numFolderRows, p.numFolderColumns,
-                p.iconSize, p.landscapeIconSize, p.iconTextSize, p.numHotseatIcons,
+                p.iconSizeX, p.landscapeIconSizeX, p.iconTextSize, p.numHotseatIcons,
                 p.defaultLayoutId, p.demoModeLayoutId);
     }
 
@@ -134,8 +134,8 @@ public class InvariantDeviceProfile {
         numColumns = c;
         numFolderRows = fr;
         numFolderColumns = fc;
-        iconSize = is;
-        landscapeIconSize = lis;
+        iconSizeX = is;
+        landscapeIconSizeX = lis;
         iconTextSize = its;
         numHotseatIcons = hs;
         defaultLayoutId = dlId;
@@ -177,30 +177,30 @@ public class InvariantDeviceProfile {
         numFolderRows = closestProfile.numFolderRows;
         numFolderColumns = closestProfile.numFolderColumns;
 
-        iconSize = interpolatedDeviceProfileOut.iconSize;
-        iconSizeOriginal = interpolatedDeviceProfileOut.iconSize;
-        landscapeIconSize = interpolatedDeviceProfileOut.landscapeIconSize;
-        landscapeIconSizeOriginal = interpolatedDeviceProfileOut.landscapeIconSize;
-        hotseatIconSize = interpolatedDeviceProfileOut.iconSize;
-        hotseatIconSizeOriginal = interpolatedDeviceProfileOut.iconSize;
-        landscapeHotseatIconSize = interpolatedDeviceProfileOut.landscapeIconSize;
-        landscapeHotseatIconSizeOriginal = interpolatedDeviceProfileOut.landscapeIconSize;
-        allAppsIconSize = interpolatedDeviceProfileOut.iconSize;
-        allAppsIconSizeOriginal = interpolatedDeviceProfileOut.iconSize;
-        landscapeAllAppsIconSize = interpolatedDeviceProfileOut.landscapeIconSize;
-        landscapeAllAppsIconSizeOriginal = interpolatedDeviceProfileOut.landscapeIconSize;
+        iconSizeX = interpolatedDeviceProfileOut.iconSizeX;
+        iconSizeXOriginal = interpolatedDeviceProfileOut.iconSizeX;
+        landscapeIconSizeX = interpolatedDeviceProfileOut.landscapeIconSizeX;
+        landscapeIconSizeXOriginal = interpolatedDeviceProfileOut.landscapeIconSizeX;
+        hotseatIconSize = interpolatedDeviceProfileOut.iconSizeX;
+        hotseatIconSizeOriginal = interpolatedDeviceProfileOut.iconSizeX;
+        landscapeHotseatIconSize = interpolatedDeviceProfileOut.landscapeIconSizeX;
+        landscapeHotseatIconSizeOriginal = interpolatedDeviceProfileOut.landscapeIconSizeX;
+        allAppsIconSize = interpolatedDeviceProfileOut.iconSizeX;
+        allAppsIconSizeOriginal = interpolatedDeviceProfileOut.iconSizeX;
+        landscapeAllAppsIconSize = interpolatedDeviceProfileOut.landscapeIconSizeX;
+        landscapeAllAppsIconSizeOriginal = interpolatedDeviceProfileOut.landscapeIconSizeX;
         iconTextSize = interpolatedDeviceProfileOut.iconTextSize;
 
-        new IconScale(Utilities.getLawnchairPrefs(context), "iconSize", this);
+        new IconScale(Utilities.getLawnchairPrefs(context), "iconSizeX", this);
         new IconScale(Utilities.getLawnchairPrefs(context), "allAppsIconSize", this);
-        new IconScale(Utilities.getLawnchairPrefs(context), "hotseatIconSize", "iconSize",this);
+        new IconScale(Utilities.getLawnchairPrefs(context), "hotseatIconSize", "iconSizeX",this);
 
         // Initialize these *after* the icon scale has been applied, this ensures we load icons of proper resolution
-        iconBitmapSize = Utilities.pxFromDp(max(max(iconSize, allAppsIconSize), hotseatIconSize), dm);
+        iconBitmapSize = Utilities.pxFromDp(max(max(iconSizeX, allAppsIconSize), hotseatIconSize), dm);
         fillResIconDpi = getLauncherIconDensity(iconBitmapSize);
 
         // If the partner customization apk contains any grid overrides, apply them
-        // Supported overrides: numRows, numColumns, iconSize
+        // Supported overrides: numRows, numColumns, iconSizeX
         applyPartnerDeviceProfileOverrides(context, dm);
 
         Point realSize = new Point();
@@ -239,7 +239,7 @@ public class InvariantDeviceProfile {
                             Xml.asAttributeSet(parser), R.styleable.InvariantDeviceProfile);
                     int numRows = a.getInt(R.styleable.InvariantDeviceProfile_numRows, 0);
                     int numColumns = a.getInt(R.styleable.InvariantDeviceProfile_numColumns, 0);
-                    float iconSize = a.getFloat(R.styleable.InvariantDeviceProfile_iconSize, 0);
+                    float iconSizeX = a.getFloat(R.styleable.InvariantDeviceProfile_iconSizeX, 0);
                     profiles.add(new InvariantDeviceProfile(
                             a.getString(R.styleable.InvariantDeviceProfile_name),
                             a.getFloat(R.styleable.InvariantDeviceProfile_minWidthDps, 0),
@@ -248,8 +248,8 @@ public class InvariantDeviceProfile {
                             numColumns,
                             a.getInt(R.styleable.InvariantDeviceProfile_numFolderRows, numRows),
                             a.getInt(R.styleable.InvariantDeviceProfile_numFolderColumns, numColumns),
-                            iconSize,
-                            a.getFloat(R.styleable.InvariantDeviceProfile_landscapeIconSize, iconSize),
+                            iconSizeX,
+                            a.getFloat(R.styleable.InvariantDeviceProfile_landscapeIconSize, iconSizeX),
                             a.getFloat(R.styleable.InvariantDeviceProfile_iconTextSize, 0),
                             a.getInt(R.styleable.InvariantDeviceProfile_numHotseatIcons, numColumns),
                             a.getResourceId(R.styleable.InvariantDeviceProfile_defaultLayoutId, 0),
@@ -343,16 +343,16 @@ public class InvariantDeviceProfile {
     }
 
     private void add(InvariantDeviceProfile p) {
-        iconSize += p.iconSize;
-        landscapeIconSize += p.landscapeIconSize;
+        iconSizeX += p.iconSizeX;
+        landscapeIconSizeX += p.landscapeIconSizeX;
         allAppsIconSize += p.allAppsIconSize;
         landscapeAllAppsIconSize += p.landscapeAllAppsIconSize;
         iconTextSize += p.iconTextSize;
     }
 
     private InvariantDeviceProfile multiply(float w) {
-        iconSize *= w;
-        landscapeIconSize *= w;
+        iconSizeX *= w;
+        landscapeIconSizeX *= w;
         allAppsIconSize *= w;
         landscapeAllAppsIconSize *= w;
         iconTextSize *= w;

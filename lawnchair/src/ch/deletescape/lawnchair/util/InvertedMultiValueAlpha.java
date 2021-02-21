@@ -16,9 +16,8 @@
 
 package ch.deletescape.lawnchair.util;
 
-import android.support.v4.util.Consumer;
+import androidx.core.util.Consumer;
 import android.util.Property;
-import android.view.View;
 
 /**
  * Utility class to handle separating a single value as a factor of multiple values

@@ -25,10 +25,10 @@ import android.net.Uri
 import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Handler
-import android.support.design.widget.FloatingActionButton
-import android.support.design.widget.Snackbar
-import android.support.v4.graphics.drawable.DrawableCompat
-import android.support.v7.widget.AppCompatEditText
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
+import androidx.core.graphics.drawable.DrawableCompat
+import androidx.appcompat.widget.AppCompatEditText
 import android.view.View
 import android.widget.*
 import ch.deletescape.lawnchair.colors.ColorEngine
@@ -150,7 +150,8 @@ class RestoreBackupActivity : SettingsBaseActivity(), LawnchairBackup.MetaLoader
         if (error == 0) {
             RestoreBackupTask(this).execute()
         } else {
-            Snackbar.make(findViewById(R.id.content), error, Snackbar.LENGTH_SHORT).show()
+            Snackbar
+                    .make(findViewById(R.id.content), error, Snackbar.LENGTH_SHORT).show()
         }
     }
 

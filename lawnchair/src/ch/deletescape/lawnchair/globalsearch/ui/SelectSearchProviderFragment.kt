@@ -4,10 +4,10 @@ import android.content.Context
 import android.content.res.ColorStateList
 import android.os.Build
 import android.os.Bundle
-import android.support.v7.app.AlertDialog
-import android.support.v7.preference.PreferenceDialogFragmentCompat
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.appcompat.app.AlertDialog
+import androidx.preference.PreferenceDialogFragmentCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,9 +29,10 @@ class SelectSearchProviderFragment : PreferenceDialogFragmentCompat() {
     override fun onBindDialogView(view: View) {
         super.onBindDialogView(view)
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.list)
+        val recyclerView = view.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.list)
         recyclerView.adapter = ProviderListAdapter(activity as Context)
-        recyclerView.layoutManager = LinearLayoutManager(activity)
+        recyclerView.layoutManager =
+                androidx.recyclerview.widget.LinearLayoutManager(activity)
     }
 
     private fun saveChanges() {
@@ -54,7 +55,7 @@ class SelectSearchProviderFragment : PreferenceDialogFragmentCompat() {
 
     }
 
-    inner class ProviderListAdapter(private val context: Context) : RecyclerView.Adapter<ProviderListAdapter.Holder>() {
+    inner class ProviderListAdapter(private val context: Context) : androidx.recyclerview.widget.RecyclerView.Adapter<ProviderListAdapter.Holder>() {
 
         val Providers = SearchProviderController.getSearchProviders(context)
 
@@ -69,7 +70,7 @@ class SelectSearchProviderFragment : PreferenceDialogFragmentCompat() {
             holder.text.isChecked = Providers[position]::class.java.name == value
         }
 
-        inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+        inner class Holder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
             val text = itemView.findViewById<CheckedTextView>(android.R.id.text1)!!.apply {
                 setOnClickListener(this@Holder)

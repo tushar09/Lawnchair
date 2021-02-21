@@ -436,7 +436,7 @@ public class DeviceProfile implements LawnchairPreferences.OnPreferenceChangeLis
         int dockLabelRowCount = prefs.getDockLabelRows();
         // Workspace
         final boolean isVerticalLayout = isVerticalBarLayout();
-        float invIconSizePx = isVerticalLayout ? inv.landscapeIconSize : inv.iconSize;
+        float invIconSizePx = isVerticalLayout ? inv.landscapeIconSizeX : inv.iconSizeX;
         iconSizeOriginalPx = Utilities.pxFromDp(invIconSizePx, dm);
         iconSizePx = (int) (iconSizeOriginalPx * scale);
         iconTextSizeOriginalPx = (int) (Utilities.pxFromSp(inv.iconTextSize, dm) * scale);
@@ -571,7 +571,7 @@ public class DeviceProfile implements LawnchairPreferences.OnPreferenceChangeLis
         // Home Folders
         int folderLabelRowCount = prefs.getHomeLabelRows();
         
-        folderChildIconSizePx = (int) (Utilities.pxFromDp(inv.iconSize, dm) * scale);
+        folderChildIconSizePx = (int) (Utilities.pxFromDp(inv.iconSizeX, dm) * scale);
         folderChildTextSizePx =
                 (int) (res.getDimensionPixelSize(R.dimen.folder_child_text_size) * scale);
 

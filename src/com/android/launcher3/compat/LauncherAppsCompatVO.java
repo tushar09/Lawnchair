@@ -28,9 +28,8 @@ import android.os.Build;
 import android.os.Parcelable;
 import android.os.Process;
 import android.os.UserHandle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
-import android.util.Log;
 import com.android.launcher3.LauncherAppState;
 import com.android.launcher3.LauncherModel;
 import com.android.launcher3.ShortcutInfo;

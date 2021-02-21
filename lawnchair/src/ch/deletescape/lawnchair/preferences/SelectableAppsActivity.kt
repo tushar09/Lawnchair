@@ -26,9 +26,9 @@ import android.os.Handler
 import android.os.Process
 import android.os.ResultReceiver
 import android.os.UserHandle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
 import ch.deletescape.lawnchair.LawnchairAppFilter
 import ch.deletescape.lawnchair.groups.DrawerTabs
@@ -63,7 +63,7 @@ class SelectableAppsActivity : SettingsActivity() {
         private var selection: Set<String> = emptySet()
         private var changed = false
 
-        override fun onRecyclerViewCreated(recyclerView: RecyclerView) {
+        override fun onRecyclerViewCreated(recyclerView: androidx.recyclerview.widget.RecyclerView) {
             val arguments = arguments!!
             val isWork = if (arguments.containsKey(KEY_FILTER_IS_WORK))
                 arguments.getBoolean(KEY_FILTER_IS_WORK) else null
@@ -71,7 +71,8 @@ class SelectableAppsActivity : SettingsActivity() {
 
             val context = recyclerView.context
             recyclerView.setHasFixedSize(true)
-            recyclerView.layoutManager = LinearLayoutManager(context)
+            recyclerView.layoutManager =
+                    androidx.recyclerview.widget.LinearLayoutManager(context)
             recyclerView.adapter = SelectableAppsAdapter.ofProperty(activity!!,
                     ::selection, this, createAppFilter(context, DrawerTabs.getWorkFilter(isWork)))
         }

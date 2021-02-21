@@ -19,7 +19,7 @@ package ch.deletescape.lawnchair.sesame.preferences
 
 import android.content.Context
 import android.os.Parcelable
-import android.support.v7.preference.PreferenceViewHolder
+import androidx.preference.PreferenceViewHolder
 import android.util.AttributeSet
 import android.widget.Toast
 import ch.deletescape.lawnchair.*

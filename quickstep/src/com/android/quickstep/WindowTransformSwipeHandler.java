@@ -43,9 +43,9 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemClock;
 import android.os.UserHandle;
-import android.support.annotation.AnyThread;
-import android.support.annotation.UiThread;
-import android.support.annotation.WorkerThread;
+import androidx.annotation.AnyThread;
+import androidx.annotation.UiThread;
+import androidx.annotation.WorkerThread;
 import android.util.Log;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
@@ -89,7 +89,6 @@ import com.android.systemui.shared.system.SyncRtSurfaceTransactionApplier;
 import com.android.systemui.shared.system.WindowCallbacksCompat;
 import com.android.systemui.shared.system.WindowManagerWrapper;
 
-import com.google.android.apps.nexuslauncher.NexusLauncherActivity;
 import java.util.StringJoiner;
 import java.util.function.BiFunction;
 

@@ -18,7 +18,7 @@
 package ch.deletescape.lawnchair.preferences
 
 import android.content.Context
-import android.support.annotation.Keep
+import androidx.annotation.Keep
 import android.util.AttributeSet
 import android.view.View
 import android.widget.Switch

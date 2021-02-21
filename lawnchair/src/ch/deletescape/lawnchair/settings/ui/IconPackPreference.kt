@@ -21,8 +21,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.support.annotation.Keep
-import android.support.v7.preference.Preference
+import androidx.annotation.Keep
+import androidx.preference.Preference
 import android.util.AttributeSet
 import android.view.View
 import android.widget.ImageView

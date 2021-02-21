@@ -18,7 +18,7 @@
 package ch.deletescape.lawnchair.colors
 
 import android.graphics.Color
-import android.support.annotation.Keep
+import androidx.annotation.Keep
 import android.text.TextUtils
 import ch.deletescape.lawnchair.getColorAttr
 import ch.deletescape.lawnchair.theme.ThemeOverride

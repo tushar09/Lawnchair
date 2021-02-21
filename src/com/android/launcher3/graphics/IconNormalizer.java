@@ -29,12 +29,11 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.util.Log;
 import ch.deletescape.lawnchair.iconpack.AdaptiveIconCompat;
 import com.android.launcher3.LauncherAppState;
-import com.android.launcher3.Utilities;
 import com.android.launcher3.dragndrop.FolderAdaptiveIcon;
 
 import java.nio.ByteBuffer;

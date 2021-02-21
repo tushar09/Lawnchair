@@ -19,8 +19,8 @@ package ch.deletescape.lawnchair.settings.ui.controllers
 
 import android.content.Context
 import android.content.pm.PackageManager
-import android.support.annotation.Keep
-import android.support.v7.preference.Preference
+import androidx.annotation.Keep
+import androidx.preference.Preference
 import android.text.TextUtils
 import android.util.Log
 import ch.deletescape.lawnchair.FeedBridge

@@ -28,13 +28,13 @@ import android.content.res.ColorStateList
 import android.net.Uri
 import android.os.AsyncTask
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
-import android.support.design.widget.Snackbar
-import android.support.design.widget.TextInputLayout
-import android.support.v4.app.ActivityCompat
-import android.support.v4.content.ContextCompat
-import android.support.v4.graphics.drawable.DrawableCompat
-import android.support.v7.widget.AppCompatEditText
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textfield.TextInputLayout
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
+import androidx.appcompat.widget.AppCompatEditText
 import android.view.View
 import android.widget.*
 import ch.deletescape.lawnchair.colors.ColorEngine
@@ -103,8 +103,9 @@ class NewBackupActivity : SettingsBaseActivity(), ColorEngine.OnColorChangeListe
                 != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                             Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                Snackbar.make(findViewById(R.id.content), R.string.read_external_storage_required,
-                        Snackbar.LENGTH_SHORT).show()
+                Snackbar
+                        .make(findViewById(R.id.content), R.string.read_external_storage_required,
+                              Snackbar.LENGTH_SHORT).show()
             }
             ActivityCompat.requestPermissions(this,
                     arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
@@ -124,7 +125,8 @@ class NewBackupActivity : SettingsBaseActivity(), ColorEngine.OnColorChangeListe
                     startActivityForResult(intent, 1)
                 }
             } else {
-                Snackbar.make(findViewById(R.id.content), error, Snackbar.LENGTH_SHORT).show()
+                Snackbar
+                        .make(findViewById(R.id.content), error, Snackbar.LENGTH_SHORT).show()
             }
         }
     }
@@ -155,8 +157,9 @@ class NewBackupActivity : SettingsBaseActivity(), ColorEngine.OnColorChangeListe
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     onStartBackup()
                 } else {
-                    Snackbar.make(findViewById(R.id.content), R.string.read_external_storage_required,
-                            Snackbar.LENGTH_SHORT).show()
+                    Snackbar
+                            .make(findViewById(R.id.content), R.string.read_external_storage_required,
+                                  Snackbar.LENGTH_SHORT).show()
                 }
             }
             else -> {
@@ -265,7 +268,8 @@ class NewBackupActivity : SettingsBaseActivity(), ColorEngine.OnColorChangeListe
                 startActivity(Intent(this@NewBackupActivity, BackupListActivity::class.java))
             } else {
                 inProgress = false
-                Snackbar.make(findViewById(R.id.content), R.string.failed, Snackbar.LENGTH_SHORT)
+                Snackbar
+                        .make(findViewById(R.id.content), R.string.failed, Snackbar.LENGTH_SHORT)
                         .setAction(R.string.backup_generate_report, {
                             lawnchairApp.bugReporter.writeReport("Failed to create backup", result)
                         }).show()

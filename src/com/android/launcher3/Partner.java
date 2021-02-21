@@ -149,7 +149,7 @@ public class Partner {
         }
 
         if (iconSize > 0) {
-            inv.iconSize = iconSize;
+            inv.iconSizeX = iconSize;
         }
     }
 }

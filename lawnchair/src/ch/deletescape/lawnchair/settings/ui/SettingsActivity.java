@@ -32,30 +32,30 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.annotation.XmlRes;
-import android.support.v14.preference.SwitchPreference;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentManager.OnBackStackChangedListener;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.preference.EditTextPreference;
-import android.support.v7.preference.ListPreference;
-import android.support.v7.preference.Preference;
-import android.support.v7.preference.Preference.OnPreferenceClickListener;
-import android.support.v7.preference.PreferenceFragmentCompat;
-import android.support.v7.preference.PreferenceFragmentCompat.OnPreferenceDisplayDialogCallback;
-import android.support.v7.preference.PreferenceFragmentCompat.OnPreferenceStartFragmentCallback;
-import android.support.v7.preference.PreferenceGroup;
-import android.support.v7.preference.PreferenceRecyclerViewAccessibilityDelegate;
-import android.support.v7.preference.PreferenceScreen;
-import android.support.v7.preference.TwoStatePreference;
-import android.support.v7.preference.internal.AbstractMultiSelectListPreference;
-import android.support.v7.widget.ActionMenuView;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.Adapter;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.NonNull;
+import androidx.annotation.XmlRes;
+import androidx.preference.SwitchPreference;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentManager.OnBackStackChangedListener;
+import androidx.appcompat.app.AlertDialog;
+import androidx.preference.EditTextPreference;
+import androidx.preference.ListPreference;
+import androidx.preference.Preference;
+import androidx.preference.Preference.OnPreferenceClickListener;
+import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.PreferenceFragmentCompat.OnPreferenceDisplayDialogCallback;
+import androidx.preference.PreferenceFragmentCompat.OnPreferenceStartFragmentCallback;
+import androidx.preference.PreferenceGroup;
+import androidx.preference.PreferenceRecyclerViewAccessibilityDelegate;
+import androidx.preference.PreferenceScreen;
+import androidx.preference.TwoStatePreference;
+import androidx.preference.internal.AbstractMultiSelectListPreference;
+import androidx.appcompat.widget.ActionMenuView;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView.Adapter;
+import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -80,7 +80,6 @@ import ch.deletescape.lawnchair.gestures.ui.GesturePreference;
 import ch.deletescape.lawnchair.gestures.ui.SelectGestureHandlerFragment;
 import ch.deletescape.lawnchair.globalsearch.ui.SearchProviderPreference;
 import ch.deletescape.lawnchair.globalsearch.ui.SelectSearchProviderFragment;
-import ch.deletescape.lawnchair.iconpack.IconPackManager;
 import ch.deletescape.lawnchair.preferences.ResumablePreference;
 import ch.deletescape.lawnchair.preferences.SmartspaceEventProvidersFragment;
 import ch.deletescape.lawnchair.preferences.SmartspaceEventProvidersPreference;
@@ -101,9 +100,6 @@ import com.android.launcher3.util.ContentWriter;
 import com.android.launcher3.util.ContentWriter.CommitParams;
 import com.android.launcher3.util.SettingsObserver;
 import com.android.launcher3.views.ButtonPreference;
-import com.facebook.ads.AbstractAdListener;
-import com.facebook.ads.Ad;
-import com.facebook.ads.AdError;
 import com.facebook.ads.AdSize;
 import com.facebook.ads.AdView;
 import com.facebook.ads.InterstitialAd;
@@ -201,8 +197,11 @@ public class SettingsActivity extends SettingsBaseActivity implements
         adContainer.addView(adView);
         adView.loadAd();
 
-        interstitialAd = new InterstitialAd(this, "1238753982967772_1238768376299666");
-        interstitialAd.loadAd();
+        if(showSearch){
+            interstitialAd = new InterstitialAd(this, "1238753982967772_1238768376299666");
+            interstitialAd.loadAd();
+        }
+
     }
 
     @Override
@@ -393,7 +392,7 @@ public class SettingsActivity extends SettingsBaseActivity implements
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if(interstitialAd.isAdLoaded()){
+        if(interstitialAd != null && interstitialAd.isAdLoaded()){
             interstitialAd.show();
         }
     }

@@ -19,7 +19,7 @@ package ch.deletescape.lawnchair.sesame.views
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.support.v7.widget.DialogTitle
+import androidx.appcompat.widget.DialogTitle
 import android.util.AttributeSet
 import ch.deletescape.lawnchair.font.CustomFontManager
 import ch.deletescape.lawnchair.setCustomFont

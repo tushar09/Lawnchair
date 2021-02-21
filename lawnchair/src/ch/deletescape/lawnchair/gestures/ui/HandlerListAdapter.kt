@@ -19,7 +19,7 @@ package ch.deletescape.lawnchair.gestures.ui
 
 import android.content.Context
 import android.content.res.ColorStateList
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,7 +30,7 @@ import ch.deletescape.lawnchair.gestures.GestureController
 import ch.deletescape.lawnchair.gestures.GestureHandler
 import com.android.launcher3.R
 
-class HandlerListAdapter(private val context: Context, isSwipeUp: Boolean, private val currentClass: String, private val onSelectHandler: (handler: GestureHandler) -> Unit, showBlank: Boolean = true) : RecyclerView.Adapter<HandlerListAdapter.Holder>() {
+class HandlerListAdapter(private val context: Context, isSwipeUp: Boolean, private val currentClass: String, private val onSelectHandler: (handler: GestureHandler) -> Unit, showBlank: Boolean = true) : androidx.recyclerview.widget.RecyclerView.Adapter<HandlerListAdapter.Holder>() {
 
     val handlers = GestureController.getGestureHandlers(context, isSwipeUp, showBlank)
 
@@ -45,7 +45,7 @@ class HandlerListAdapter(private val context: Context, isSwipeUp: Boolean, priva
         holder.text.isChecked = handlers[position]::class.java.name == currentClass
     }
 
-    inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    inner class Holder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
         val text = itemView.findViewById<CheckedTextView>(android.R.id.text1)!!.apply {
             setOnClickListener(this@Holder)

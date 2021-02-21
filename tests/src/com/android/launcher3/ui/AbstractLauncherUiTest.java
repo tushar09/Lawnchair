@@ -26,13 +26,13 @@ import android.graphics.Point;
 import android.os.Process;
 import android.os.RemoteException;
 import android.os.SystemClock;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.uiautomator.By;
-import android.support.test.uiautomator.BySelector;
-import android.support.test.uiautomator.Direction;
-import android.support.test.uiautomator.UiDevice;
-import android.support.test.uiautomator.UiObject2;
-import android.support.test.uiautomator.Until;
+import androidx.test.platform.app.InstrumentationRegistry;
+import androidx.test.uiautomator.By;
+import androidx.test.uiautomator.BySelector;
+import androidx.test.uiautomator.Direction;
+import androidx.test.uiautomator.UiDevice;
+import androidx.test.uiautomator.UiObject2;
+import androidx.test.uiautomator.Until;
 import android.util.Log;
 import android.view.MotionEvent;
 
@@ -49,7 +49,6 @@ import com.android.launcher3.testcomponent.AppWidgetWithConfig;
 
 import org.junit.Before;
 
-import java.util.Locale;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;

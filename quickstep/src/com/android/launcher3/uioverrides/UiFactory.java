@@ -26,14 +26,11 @@ import static com.android.launcher3.LauncherState.OVERVIEW;
 import static com.android.launcher3.allapps.DiscoveryBounce.HOME_BOUNCE_SEEN;
 import static com.android.launcher3.allapps.DiscoveryBounce.SHELF_BOUNCE_SEEN;
 
-import android.Manifest;
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.os.CancellationSignal;
-import android.support.v4.content.ContextCompat;
 import android.util.Base64;
 
 import ch.deletescape.lawnchair.ClockVisibilityManager;

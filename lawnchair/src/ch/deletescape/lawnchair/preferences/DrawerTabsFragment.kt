@@ -18,9 +18,9 @@
 package ch.deletescape.lawnchair.preferences
 
 import android.os.Bundle
-import android.support.annotation.Keep
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.annotation.Keep
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -56,10 +56,11 @@ class DrawerTabsFragment : RecyclerViewFragment() {
         }
     }
 
-    override fun onRecyclerViewCreated(recyclerView: RecyclerView) {
+    override fun onRecyclerViewCreated(recyclerView: androidx.recyclerview.widget.RecyclerView) {
         val context = recyclerView.context
         recyclerView.setHasFixedSize(true)
-        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.layoutManager =
+                androidx.recyclerview.widget.LinearLayoutManager(context)
         adapter = LegacyDrawerTabsAdapter(context).apply {
             itemTouchHelper.attachToRecyclerView(recyclerView)
         }
