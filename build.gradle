@@ -165,7 +165,7 @@ android {
 
         quickstep {
             dimension "default"
-            applicationId 'ch.deletescape.lawnchair'
+            applicationId 'com.tushar.launcher3'
             testApplicationId 'com.android.launcher3.tests'
         }
 
@@ -184,10 +184,18 @@ android {
 
         ci {
             dimension "build"
-            applicationIdSuffix ".ci"
-            versionNameSuffix "-ci-" + (localProps.getProperty("branch") ?: System.getenv("DRONE_BRANCH"))
+            //applicationIdSuffix ".ci"
+            //versionNameSuffix "-ci-" + (localProps.getProperty("branch") ?: System.getenv("DRONE_BRANCH"))
 
             buildConfigField "boolean", "SIGNATURE_VERIFICATION", "true"
+        }
+
+        cd {
+            dimension "build"
+            //applicationIdSuffix ".ci"
+            //versionNameSuffix "-ci-" + (localProps.getProperty("branch") ?: System.getenv("DRONE_BRANCH"))
+
+            buildConfigField "boolean", "SIGNATURE_VERIFICATION", "false"
         }
 
         plah {
