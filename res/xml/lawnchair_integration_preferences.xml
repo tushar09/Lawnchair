@@ -22,6 +22,7 @@
     <ch.deletescape.lawnchair.globalsearch.ui.SearchProviderPreference
         android:defaultValue="@string/config_default_search_provider"
         android:key="pref_globalSearchProvider"
+        app:iconSpaceReserved="false"
         android:title="@string/pref_global_search_provider" />
 
 <!--    <ch.deletescape.lawnchair.preferences.StyledPreferenceCategory-->
@@ -56,16 +57,19 @@
 <!--    </ch.deletescape.lawnchair.preferences.StyledPreferenceCategory>-->
 
     <ch.deletescape.lawnchair.preferences.StyledPreferenceCategory
+        app:iconSpaceReserved="false"
         android:title="@string/google">
 
         <ch.deletescape.lawnchair.preferences.StyledSwitchPreferenceCompat
             android:defaultValue="true"
             android:key="pref_enable_minus_one"
+            app:iconSpaceReserved="false"
             android:title="@string/title_show_google_app"
             app:controllerClass=".MinusOneController"/>
 
         <ListPreference
             android:defaultValue="1"
+            app:iconSpaceReserved="false"
             android:entries="@array/feedThemes"
             android:entryValues="@array/feedThemeValues"
             android:key="pref_feedTheme"
@@ -78,10 +82,12 @@
 
     <ch.deletescape.lawnchair.preferences.StyledPreferenceCategory
         android:title="@string/customnavbar"
+        app:iconSpaceReserved="false"
         app:controllerClass=".CustomNavBarIntegrationController">
 
         <ch.deletescape.lawnchair.customnavbar.preferences.CustomNavBarIntegrationPreference
             android:key="cnb_integration"
+            app:iconSpaceReserved="false"
             android:title="@string/customnavbar_back_hiding_desc" />
     </ch.deletescape.lawnchair.preferences.StyledPreferenceCategory>
 

@@ -4,18 +4,21 @@
 
     <ch.deletescape.lawnchair.preferences.SwipeUpSwitchPreference
         android:defaultValue="true"
+        app:iconSpaceReserved="false"
         android:key="pref_swipe_up_to_switch_apps_enabled"
         android:persistent="true"
         android:title="@string/swipe_up_to_switch_apps_title" />
 
     <ch.deletescape.lawnchair.preferences.StyledSwitchPreferenceCompat
         android:defaultValue="false"
+        app:iconSpaceReserved="false"
         android:key="pref_swipe_left_to_go_back"
         android:persistent="true"
         android:title="@string/swipe_left_to_go_back_title" />
 
     <ch.deletescape.lawnchair.preferences.StyledSwitchPreferenceCompat
         android:defaultValue="true"
+        app:iconSpaceReserved="false"
         android:key="pref_recents_blur_background"
         android:persistent="true"
         android:title="Blur background" /> <!-- TODO Move this to blur pref with toggles for other sections -->
@@ -23,6 +26,7 @@
     <ch.deletescape.lawnchair.preferences.SeekbarPreference
         android:key="pref_recents_radius"
         android:title="@string/radius"
+        app:iconSpaceReserved="false"
         app:minValue="0"
         app:maxValue="60"
         app:steps="60"
@@ -32,6 +36,7 @@
         android:persistent="true"/>
 
     <ch.deletescape.lawnchair.preferences.StyledPreferenceCategory
+        app:iconSpaceReserved="false"
         android:title="@string/pref_category_nav_swipe_up_gestures">
 
         <ch.deletescape.lawnchair.gestures.ui.GesturePreference
@@ -39,6 +44,7 @@
             android:key="pref_gesture_nav_swipe_up_left"
             android:persistent="true"
             android:title="@string/gesture_nav_swipe_up_left"
+            app:iconSpaceReserved="false"
             android:dependency="pref_swipe_up_to_switch_apps_enabled"
             app:gestureClass="ch.deletescape.lawnchair.gestures.NavSwipeUpGesture"/>
 
@@ -46,6 +52,7 @@
             android:defaultValue="@string/action_switch_apps_class"
             android:key="pref_gesture_nav_swipe_up_center"
             android:persistent="true"
+            app:iconSpaceReserved="false"
             android:title="@string/gesture_nav_swipe_up_center"
             android:dependency="pref_swipe_up_to_switch_apps_enabled"
             app:gestureClass="ch.deletescape.lawnchair.gestures.NavSwipeUpGesture"/>
@@ -54,6 +61,7 @@
             android:defaultValue="@string/action_switch_apps_class"
             android:key="pref_gesture_nav_swipe_up_right"
             android:persistent="true"
+            app:iconSpaceReserved="false"
             android:title="@string/gesture_nav_swipe_up_right"
             android:dependency="pref_swipe_up_to_switch_apps_enabled"
             app:gestureClass="ch.deletescape.lawnchair.gestures.NavSwipeUpGesture"/>

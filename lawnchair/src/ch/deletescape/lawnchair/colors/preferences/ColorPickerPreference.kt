@@ -60,7 +60,6 @@ open class ColorPickerPreference(context: Context, attrs: AttributeSet?)
 
     override fun onDetached() {
         super.onDetached()
-
         engine.removeColorChangeListeners(this, key)
     }
 

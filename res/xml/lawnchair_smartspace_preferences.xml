@@ -4,19 +4,23 @@
   
     <ch.deletescape.lawnchair.preferences.PreviewPreference
         android:key="pref_smartspace_preview"
+        app:iconSpaceReserved="false"
         app:previewLayout="@layout/smartspace_preview" />
 
     <ch.deletescape.lawnchair.preferences.SmartspaceAddToHomePreference
         android:key="pref_smartspace_add_to_home"
         android:title="@string/smartspace_add_to_home"
+        app:iconSpaceReserved="false"
         app:indexable="false" />
     
     <ch.deletescape.lawnchair.preferences.StyledPreferenceCategory
         android:key="homewidgetStyle"
+        app:iconSpaceReserved="false"
         android:title="@string/pref_category_theme">
 
         <ch.deletescape.lawnchair.preferences.StyledSwitchPreferenceCompat
             android:key="pref_smartspace_date"
+            app:iconSpaceReserved="false"
             android:dependency="pref_use_pill_qsb"
             android:title="@string/smartspace_date"
             android:defaultValue="true"
@@ -25,6 +29,7 @@
         <ch.deletescape.lawnchair.preferences.StyledSwitchPreferenceCompat
             android:key="pref_smartspace_time"
             android:title="@string/smartspace_time"
+            app:iconSpaceReserved="false"
             android:defaultValue="false"
             android:dependency="pref_use_pill_qsb"
             />
@@ -32,6 +37,7 @@
         <ch.deletescape.lawnchair.preferences.StyledSwitchPreferenceCompat
             android:key="pref_smartspace_time_above"
             android:title="@string/pref_smartspace_time_above"
+            app:iconSpaceReserved="false"
             android:defaultValue="false"
             android:dependency="pref_smartspace_time"
             />
@@ -39,6 +45,7 @@
         <ch.deletescape.lawnchair.preferences.SmartspaceHideClockPreference
             android:key="pref_hide_statusbar_clock"
             android:title="@string/pref_hide_statusbar_clock"
+            app:iconSpaceReserved="false"
             android:summary="@string/root_access_required"
             android:defaultValue="false"
             android:dependency="pref_smartspace_time"
@@ -46,6 +53,7 @@
 
         <ch.deletescape.lawnchair.preferences.StyledSwitchPreferenceCompat
             android:key="pref_smartspace_time_24_h"
+            app:iconSpaceReserved="false"
             android:title="@string/smartspace_time_24_h"
             android:defaultValue="false"
             android:dependency="pref_smartspace_time"
@@ -53,6 +61,7 @@
 
         <ch.deletescape.lawnchair.preferences.StyledSwitchPreferenceCompat
             android:key="pref_use_pill_qsb"
+            app:iconSpaceReserved="false"
             android:title="@string/title_use_pill_qsb"
             android:disableDependentsState="true"
             android:defaultValue="false"
@@ -61,6 +70,7 @@
         <ch.deletescape.lawnchair.preferences.SuperGColorPickerPreference
             android:key="pref_superGBackgroundColorResolver"
             android:title="@string/background_color"
+            app:iconSpaceReserved="false"
             android:dependency="pref_use_pill_qsb"
             app:colorMode="RGB"
             app:resolvers="@array/resolvers_superg_background"/>
@@ -69,33 +79,39 @@
 
     <ch.deletescape.lawnchair.preferences.StyledPreferenceCategory
         android:key="prefCat_homewidgetWeather"
+        app:iconSpaceReserved="false"
         android:title="@string/pref_category_weather">
 
         <ch.deletescape.lawnchair.preferences.SmartspaceProviderPreference
             android:key="pref_smartspace_widget_provider"
             android:title="@string/pref_smartspace_widget_provider"
+            app:iconSpaceReserved="false"
             android:summary="%s"
             />
 
         <ch.deletescape.lawnchair.settings.ui.WeatherIconPackPreference
             android:key="pref_weatherIcons"
             android:title="@string/pref_weather_icon_pack"
+            app:iconSpaceReserved="false"
             app:controllerClass=".WeatherIconPackController"/>
 
         <ch.deletescape.lawnchair.preferences.OWMEditTextPreference
             android:defaultValue="@string/default_owm_key"
             android:dependency="pref_smartspace_widget_provider"
             android:key="pref_weatherApiKey"
+            app:iconSpaceReserved="false"
             android:title="@string/pref_weather_api_key_title" />
 
         <ch.deletescape.lawnchair.preferences.OWMEditTextPreference
             android:defaultValue="@string/default_city"
             android:dependency="pref_smartspace_widget_provider"
             android:key="pref_weather_city"
+            app:iconSpaceReserved="false"
             android:title="@string/pref_weather_city_title" />
 
         <ListPreference
             android:defaultValue="metric"
+            app:iconSpaceReserved="false"
             android:dependency="pref_smartspace_widget_provider"
             android:entries="@array/unitsTexts"
             android:entryValues="@array/unitsValues"
@@ -106,6 +122,7 @@
         <ch.deletescape.lawnchair.preferences.SmartspaceEventProvidersPreference
             android:key="pref_smartspace_event_providers"
             android:dependency="pref_use_pill_qsb"
+            app:iconSpaceReserved="false"
             android:title="@string/pref_smartspace_event_providers"
             />
     </ch.deletescape.lawnchair.preferences.StyledPreferenceCategory>

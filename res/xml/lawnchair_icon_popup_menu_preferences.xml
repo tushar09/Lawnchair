@@ -24,6 +24,7 @@
         android:key="pref_iconPopup_remove"
         android:icon="@drawable/ic_remove_no_shadow"
         android:persistent="true"
+        app:iconSpaceReserved="false"
         android:title="@string/remove_drop_target_label" />
 
     <ch.deletescape.lawnchair.preferences.StyledSwitchPreferenceCompat
@@ -31,11 +32,13 @@
         android:key="pref_iconPopup_sesame"
         android:icon="@drawable/ic_sesame"
         android:persistent="true"
+        app:iconSpaceReserved="false"
         android:title="@string/shortcut_sesame"
         app:controllerClass=".SesameShortcutController" />
 
     <ch.deletescape.lawnchair.preferences.StyledSwitchPreferenceCompat
         android:defaultValue="true"
+        app:iconSpaceReserved="false"
         android:key="pref_iconPopup_edit"
         android:icon="@drawable/ic_edit_no_shadow"
         android:persistent="true"

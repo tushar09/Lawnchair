@@ -50,6 +50,10 @@ open class SubPreference(context: Context, attrs: AttributeSet) : StyledIconPref
         fragment = SettingsActivity.SubSettingsFragment::class.java.name
     }
 
+    override fun setIconSpaceReserved(iconSpaceReserved: Boolean) {
+        super.setIconSpaceReserved(false)
+    }
+
     override fun getExtras(): Bundle {
         val b = Bundle(2)
         b.putString(SettingsActivity.SubSettingsFragment.TITLE, title as String)

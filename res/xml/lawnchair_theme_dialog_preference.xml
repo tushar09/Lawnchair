@@ -4,14 +4,17 @@
 
     <ch.deletescape.lawnchair.theme.ui.ThemeDarkModeListPreference
         android:key="pref_dark_theme_mode"
+        app:iconSpaceReserved="false"
         android:title="@string/theme_dark_theme_mode"
         android:summary="%s" />
 
     <ch.deletescape.lawnchair.theme.ui.ThemeBlackSwitchPreference
         android:title="@string/theme_use_black"
+        app:iconSpaceReserved="false"
         app:switchFlag="8" />
 
     <ch.deletescape.lawnchair.theme.ui.ThemeFlagSwitchPreference
         android:title="@string/theme_use_dark_text"
+        app:iconSpaceReserved="false"
         app:switchFlag="2" />
 </androidx.preference.PreferenceScreen>

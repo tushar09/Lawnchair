@@ -14,9 +14,11 @@
      limitations under the License.
 -->
 
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.android.launcher3.views.ButtonPreference
+app:iconSpaceReserved="false"
         android:key="pref_icon_badging"
         android:title="@string/icon_badging_title"
         android:persistent="false"
@@ -30,6 +32,7 @@
     </com.android.launcher3.views.ButtonPreference>
 
     <SwitchPreference
+app:iconSpaceReserved="false"
         android:key="pref_smartspace"
         android:title="@string/smartspace_preferences_in_settings"
         android:summary="@string/smartspace_preferences_in_settings_desc"
@@ -38,6 +41,7 @@
         />
 
     <SwitchPreference
+app:iconSpaceReserved="false"
         android:key="pref_add_icon_to_home"
         android:title="@string/auto_add_shortcuts_label"
         android:summary="@string/auto_add_shortcuts_description"
@@ -45,18 +49,21 @@
         android:persistent="true" />
 
     <SwitchPreference
+app:iconSpaceReserved="false"
         android:key="pref_enable_minus_one"
         android:title="@string/title_show_google_app"
         android:defaultValue="true"
         />
 
     <SwitchPreference
+        app:iconSpaceReserved="false"
         android:key="pref_show_predictions"
         android:title="@string/title_app_suggestions"
         android:defaultValue="true"
         />
 
     <SwitchPreference
+app:iconSpaceReserved="false"
         android:key="pref_allowRotation"
         android:title="@string/allow_rotation_title"
         android:summary="@string/allow_rotation_desc"
@@ -64,6 +71,7 @@
         android:persistent="true" />
 
     <ListPreference
+        app:iconSpaceReserved="false"
         android:key="pref_override_theme"
         android:title="@string/theme_title"
         android:summary="%s"
@@ -74,12 +82,14 @@
 
     <com.google.android.apps.nexuslauncher.CustomIconPreference
         android:key="pref_icon_pack"
+        app:iconSpaceReserved="false"
         android:title="@string/icon_pack"
         android:summary="%s"
         android:defaultValue=""
         android:persistent="true" />
 
     <PreferenceScreen
+        app:iconSpaceReserved="false"
         android:key="about_screen"
         android:title="@string/about"
         android:persistent="false">

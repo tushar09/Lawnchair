@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.preference.PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ch.deletescape.lawnchair.preferences.StyledPreferenceCategory
         android:key="prefCat_desktopLayout"
+        app:iconSpaceReserved="false"
         android:title="@string/pref_category_layout">
 
         <ch.deletescape.lawnchair.settings.ui.GridSizePreference
             android:key="pref_desktop_grid_size"
+            app:iconSpaceReserved="false"
             android:title="@string/grid_size" />
 
         <ch.deletescape.lawnchair.preferences.StyledSwitchPreferenceCompat
             android:defaultValue="false"
+            app:iconSpaceReserved="false"
             android:key="pref_allowOverlap"
             android:title="@string/overlap_placement"/>
 
         <ch.deletescape.lawnchair.preferences.StyledSwitchPreferenceCompat
             android:defaultValue="false"
+            app:iconSpaceReserved="false"
             android:key="pref_lockDesktop"
             android:title="@string/lock_desktop" />
 
@@ -24,17 +29,20 @@
 
     <ch.deletescape.lawnchair.preferences.StyledPreferenceCategory
         android:key="prefCat_desktopIcons"
+        app:iconSpaceReserved="false"
         android:title="@string/pref_category_icons">
 
         <ch.deletescape.lawnchair.preferences.StyledSwitchPreferenceCompat
             android:defaultValue="false"
             android:disableDependentsState="true"
+            app:iconSpaceReserved="false"
             android:key="pref_hideAppLabels"
             android:persistent="true"
             android:title="@string/hide_icon_labels_pref_title" />
 
         <ch.deletescape.lawnchair.preferences.StyledSwitchPreferenceCompat
             android:key="pref_homeIconLabelsInTwoLines"
+            app:iconSpaceReserved="false"
             android:title="@string/pref_mutliline_labels"
             android:defaultValue="false"
             android:dependency="pref_hideAppLabels"
@@ -42,6 +50,7 @@
 
         <ch.deletescape.lawnchair.preferences.SeekbarPreference
             android:key="pref_iconTextScaleSB"
+            app:iconSpaceReserved="false"
             android:persistent="true"
             android:title="@string/icon_text_scale_pref_title"
             android:dependency="pref_hideAppLabels"
@@ -55,6 +64,7 @@
         <ch.deletescape.lawnchair.colors.preferences.ColorPickerPreference
             android:key="pref_workspaceLabelColorResolver"
             android:title="@string/text_color"
+            app:iconSpaceReserved="false"
             android:dependency="pref_hideAppLabels"
             app:colorMode="RGB"
             app:resolvers="@array/resolvers_workspace_labels"/>

@@ -4,10 +4,12 @@
     
     <ch.deletescape.lawnchair.preferences.StyledPreferenceCategory
         android:key="prefCat_dockTheme"
+        app:iconSpaceReserved="false"
         android:title="@string/pref_category_theme">
         
         <ch.deletescape.lawnchair.preferences.DockPresetPreference
             android:key="pref_dockPreset"
+            app:iconSpaceReserved="false"
             android:title="@string/dock_style_pref_title"
             android:summary="%s"
             android:entries="@array/dockStyles"
@@ -18,6 +20,7 @@
 
         <ch.deletescape.lawnchair.preferences.DockSwitchPreference
             android:key="enableGradient"
+            app:iconSpaceReserved="false"
             android:title="@string/dock_fill"
             android:dependency="pref_dockPreset"
             android:persistent="true" />
@@ -25,6 +28,7 @@
         <ch.deletescape.lawnchair.colors.preferences.ColorPickerPreference
             android:key="pref_dockBackgroundColorResolver"
             android:title="@string/background_color"
+            app:iconSpaceReserved="false"
             android:dependency="enableGradient"
             app:colorMode="RGB"
             app:resolvers="@array/resolvers_shelf_background"/>
@@ -32,6 +36,7 @@
         <ch.deletescape.lawnchair.preferences.DockSwitchPreference
             android:key="enableShadow"
             android:title="@string/dock_shadow"
+            app:iconSpaceReserved="false"
             android:dependency="pref_dockPreset" />
 
         <ch.deletescape.lawnchair.preferences.DockSeekbarPreference
@@ -39,6 +44,7 @@
             android:title="@string/radius"
             android:dependency="pref_dockPreset"
             app:minValue="0"
+            app:iconSpaceReserved="false"
             app:maxValue="24"
             app:steps="24"
             app:summaryFormat="%.0fdp"
@@ -48,6 +54,7 @@
 
         <ch.deletescape.lawnchair.preferences.DockAutoModeSeekbarPreference
             android:key="opacityPref"
+            app:iconSpaceReserved="false"
             android:title="@string/opacity"
             android:dependency="enableGradient"
             app:minValue="0"
@@ -61,6 +68,7 @@
             android:title="@string/dock_scale"
             android:dependency="pref_dockPreset"
             app:minValue="0.60"
+            app:iconSpaceReserved="false"
             app:maxValue="1.75"
             app:defaultSeekbarValue="0"
             app:summaryFormat="%.0f%%"
@@ -69,18 +77,21 @@
  
         <ch.deletescape.lawnchair.preferences.DockSwitchPreference
             android:key="enableArrow"
+            app:iconSpaceReserved="false"
             android:title="@string/hotseat_show_arrow"
             android:persistent="true" />
 
         <ch.deletescape.lawnchair.preferences.StyledSwitchPreferenceCompat
             android:key="pref_hotseatShowPageIndicator"
             android:title="@string/hotseat_show_page_indicator"
+            app:iconSpaceReserved="false"
             android:defaultValue="true"
             android:persistent="true"/>
     </ch.deletescape.lawnchair.preferences.StyledPreferenceCategory>
     
     <ch.deletescape.lawnchair.preferences.StyledPreferenceCategory
         android:key="prefCat_dockIcons"
+        app:iconSpaceReserved="false"
         android:title="@string/pref_category_icons">
         
         <ch.deletescape.lawnchair.settings.ui.DockGridSizePreference
@@ -89,6 +100,7 @@
 
         <ch.deletescape.lawnchair.preferences.StyledSwitchPreferenceCompat
             android:defaultValue="true"
+            app:iconSpaceReserved="false"
             android:disableDependentsState="true"
             android:key="pref_hideDockLabels"
             android:persistent="true"
@@ -97,6 +109,7 @@
         <ch.deletescape.lawnchair.colors.preferences.ColorPickerPreference
             android:key="pref_hotseatLabelColorResolver"
             android:title="@string/text_color"
+            app:iconSpaceReserved="false"
             android:dependency="pref_hideDockLabels"
             app:colorMode="RGB"
             app:resolvers="@array/resolvers_workspace_labels"/>
@@ -104,6 +117,7 @@
         <ch.deletescape.lawnchair.preferences.StyledSwitchPreferenceCompat
             android:key="pref_dockIconLabelsInTwoLines"
             android:title="@string/pref_mutliline_labels"
+            app:iconSpaceReserved="false"
             android:defaultValue="false"
             android:dependency="pref_hideDockLabels"
             android:persistent="true" />
@@ -126,6 +140,7 @@
             android:key="pref_hotseatIconSize"
             android:persistent="true"
             android:title="@string/icon_scale_pref_title"
+            app:iconSpaceReserved="false"
             app:defaultSeekbarValue="0"
             app:maxValue="2.0"
             app:minValue="0.3"
@@ -135,6 +150,7 @@
 
         <ch.deletescape.lawnchair.preferences.StyledSwitchPreferenceCompat
             android:key="pref_twoRowDock"
+            app:iconSpaceReserved="false"
             android:title="@string/two_row_dock"
             android:defaultValue="false"
             android:persistent="true" />
@@ -143,12 +159,14 @@
     <ch.deletescape.lawnchair.preferences.StyledPreferenceCategory
         android:key="prefCat_dockSearchbar"
         android:title="@string/pref_category_searchbar"
+        app:iconSpaceReserved="false"
         android:dependency="pref_dockPreset">
         
         <ch.deletescape.lawnchair.preferences.StyledSwitchPreferenceCompat
             android:key="pref_dockSearchBar"
             android:title="@string/dock_search_bar"
             android:defaultValue="false"
+            app:iconSpaceReserved="false"
             android:persistent="true" />
 
         <ch.deletescape.lawnchair.preferences.StyledSwitchPreferenceCompat
@@ -156,6 +174,7 @@
             android:title="@string/dock_colored_google"
             android:dependency="pref_dockSearchBar"
             android:defaultValue="false"
+            app:iconSpaceReserved="false"
             android:persistent="true" />
     </ch.deletescape.lawnchair.preferences.StyledPreferenceCategory>
 </androidx.preference.PreferenceScreen>

@@ -16,31 +16,36 @@
   ~     along with Lawnchair Launcher.  If not, see <https://www.gnu.org/licenses/>.
   -->
 
-<androidx.preference.PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ch.deletescape.lawnchair.font.settingsui.FontPreference
         android:key="pref_font_workspace"
+        app:iconSpaceReserved="false"
         android:icon="@android:color/transparent"
         android:title="@string/pref_fonts_home_icons" />
 
     <ch.deletescape.lawnchair.font.settingsui.FontPreference
         android:key="pref_font_smartspaceText"
+        app:iconSpaceReserved="false"
         android:icon="@android:color/transparent"
         android:title="@string/pref_fonts_home_smartspace" />
 
     <ch.deletescape.lawnchair.font.settingsui.FontPreference
         android:key="pref_font_deepShortcut"
+        app:iconSpaceReserved="false"
         android:icon="@android:color/transparent"
         android:title="@string/pref_fonts_home_shortcuts" />
 
     <ch.deletescape.lawnchair.font.settingsui.FontPreference
         android:key="pref_font_allApps"
+        app:iconSpaceReserved="false"
         android:icon="@android:color/transparent"
         android:title="@string/pref_fonts_drawer_icons" />
 
     <ch.deletescape.lawnchair.font.settingsui.FontPreference
         android:key="pref_font_drawerTab"
+        app:iconSpaceReserved="false"
         android:icon="@android:color/transparent"
         android:title="@string/pref_fonts_drawer_tabs" />
 </androidx.preference.PreferenceScreen>

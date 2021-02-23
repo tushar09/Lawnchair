@@ -23,36 +23,43 @@
     <ch.deletescape.lawnchair.font.settingsui.GlobalFontPreference
         android:key="pref_font_global"
         android:icon="@drawable/ic_global_font"
+        app:iconSpaceReserved="false"
         android:title="@string/pref_fonts_global_font" />
 
     <ch.deletescape.lawnchair.preferences.StyledPreferenceCategory
         android:title="@string/homescreen"
+        app:iconSpaceReserved="false"
         android:layout="@layout/settings_category_v2"
         android:dependency="pref_font_global">
 
         <ch.deletescape.lawnchair.font.settingsui.FontPreference
             android:key="pref_font_workspace"
+            app:iconSpaceReserved="false"
             android:icon="@android:color/transparent"
             android:title="@string/pref_fonts_home_icons" />
 
         <ch.deletescape.lawnchair.font.settingsui.FontPreference
             android:key="pref_font_smartspaceText"
+            app:iconSpaceReserved="false"
             android:icon="@android:color/transparent"
             android:title="@string/pref_fonts_home_smartspace" />
 
         <ch.deletescape.lawnchair.font.settingsui.FontPreference
             android:key="pref_font_deepShortcut"
+            app:iconSpaceReserved="false"
             android:icon="@android:color/transparent"
             android:title="@string/pref_fonts_home_shortcuts" />
     </ch.deletescape.lawnchair.preferences.StyledPreferenceCategory>
 
     <ch.deletescape.lawnchair.preferences.StyledPreferenceCategory
         android:title="@string/pref_fonts_category_drawer"
+        app:iconSpaceReserved="false"
         android:layout="@layout/settings_category_v2"
         android:dependency="pref_font_global">
 
         <ch.deletescape.lawnchair.font.settingsui.FontPreference
             android:key="pref_font_allApps"
+            app:iconSpaceReserved="false"
             android:icon="@android:color/transparent"
             android:title="@string/pref_fonts_drawer_icons" />
 
@@ -60,10 +67,12 @@
             android:key="pref_font_drawerAppActions"
             android:icon="@android:color/transparent"
             android:title="@string/pref_fonts_drawer_app_actions_icons"
+            app:iconSpaceReserved="false"
             app:controllerClass=".ActionSuggestionsFontController" />
 
         <ch.deletescape.lawnchair.font.settingsui.FontPreference
             android:key="pref_font_drawerTab"
+            app:iconSpaceReserved="false"
             android:icon="@android:color/transparent"
             android:title="@string/pref_fonts_drawer_tabs" />
     </ch.deletescape.lawnchair.preferences.StyledPreferenceCategory>
