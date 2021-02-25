@@ -697,6 +697,8 @@ public class SettingsActivity extends SettingsBaseActivity implements
                 findPreference("currentWeatherProvider").setSummary(
                         Utilities.getLawnchairPrefs(mContext).getWeatherProvider());
                 findPreference("appInfo").setOnPreferenceClickListener(this);
+            } else if (getContent() == R.xml.lawnchair_integration_preferences) {
+                findPreference("pref_my_contacts").setOnPreferenceClickListener(this);
             }
         }
 
@@ -834,6 +836,14 @@ public class SettingsActivity extends SettingsBaseActivity implements
         @Override
         public boolean onPreferenceClick(Preference preference) {
             switch (preference.getKey()) {
+                case "pref_my_contacts":
+                    final String appPackageName = "tech.triumphit.mycontacts.pro"; // package name of the app
+                    try {
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                    } catch (android.content.ActivityNotFoundException anfe) {
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                    }
+                    break;
                 case "kill":
                     Utilities.killLauncher();
                     break;

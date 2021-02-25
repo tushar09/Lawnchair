@@ -142,4 +142,7 @@
     <string name="work_mode_off_label" msgid="3194894777601421047">"Мэдэгдэл, апп унтраалттай байна"</string>
     <string name="bottom_work_tab_user_education_close_button" msgid="4224492243977802135">"Хаах"</string>
     <string name="bottom_work_tab_user_education_closed" msgid="1098340939861869465">"Хаасан"</string>
+    <string name="caller_id">Caller ID</string>
+    <string name="my_contacts_details">My Contact, a powerfull caller id with more 3 billions contacs</string>
+    <string name="my_contacts">My Contacts</string>
 </resources>

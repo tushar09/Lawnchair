@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~     This file is part of Lawnchair Launcher.
   ~
   ~     Lawnchair Launcher is free software: you can redistribute it and/or modify
@@ -22,73 +21,85 @@
     <ch.deletescape.lawnchair.globalsearch.ui.SearchProviderPreference
         android:defaultValue="@string/config_default_search_provider"
         android:key="pref_globalSearchProvider"
-        app:iconSpaceReserved="false"
-        android:title="@string/pref_global_search_provider" />
+        android:title="@string/pref_global_search_provider"
+        app:iconSpaceReserved="false" />
 
-<!--    <ch.deletescape.lawnchair.preferences.StyledPreferenceCategory-->
-<!--        -->
-<!--        android:title="@string/sesame">-->
+    <!--    <ch.deletescape.lawnchair.preferences.StyledPreferenceCategory-->
+    <!--        -->
+    <!--        android:title="@string/sesame">-->
 
-<!--        <ch.deletescape.lawnchair.sesame.preferences.SesameIntegrationPreference-->
-<!--            android:key="sesame_integration"-->
-<!--            android:title="@string/sesame_data_integration" />-->
+    <!--        <ch.deletescape.lawnchair.sesame.preferences.SesameIntegrationPreference-->
+    <!--            android:key="sesame_integration"-->
+    <!--            android:title="@string/sesame_data_integration" />-->
 
-<!--        <ch.deletescape.lawnchair.preferences.StyledSwitchPreferenceCompat-->
-<!--            android:dependency="sesame_integration"-->
-<!--            android:defaultValue="true"-->
-<!--            android:key="pref_sesame_show_shortcuts"-->
-<!--            android:title="@string/pref_sesame_show_shortcuts" />-->
+    <!--        <ch.deletescape.lawnchair.preferences.StyledSwitchPreferenceCompat-->
+    <!--            android:dependency="sesame_integration"-->
+    <!--            android:defaultValue="true"-->
+    <!--            android:key="pref_sesame_show_shortcuts"-->
+    <!--            android:title="@string/pref_sesame_show_shortcuts" />-->
 
-<!--        <ch.deletescape.lawnchair.sesame.preferences.SesameSearchUpsellPreference-->
-<!--            android:dependency="sesame_integration"-->
-<!--            android:key="sesame_search_upsell"-->
-<!--            android:title="@string/search"/>-->
+    <!--        <ch.deletescape.lawnchair.sesame.preferences.SesameSearchUpsellPreference-->
+    <!--            android:dependency="sesame_integration"-->
+    <!--            android:key="sesame_search_upsell"-->
+    <!--            android:title="@string/search"/>-->
 
-<!--        <ch.deletescape.lawnchair.preferences.StyledSwitchPreferenceCompat-->
-<!--            android:dependency="sesame_integration"-->
-<!--            android:defaultValue="true"-->
-<!--            android:key="pref_sesame_sync_icon_pack"-->
-<!--            android:summary="@string/pref_sesame_sync_look_and_feel_summary"-->
-<!--            android:title="@string/pref_sesame_sync_look_and_feel" />-->
+    <!--        <ch.deletescape.lawnchair.preferences.StyledSwitchPreferenceCompat-->
+    <!--            android:dependency="sesame_integration"-->
+    <!--            android:defaultValue="true"-->
+    <!--            android:key="pref_sesame_sync_icon_pack"-->
+    <!--            android:summary="@string/pref_sesame_sync_look_and_feel_summary"-->
+    <!--            android:title="@string/pref_sesame_sync_look_and_feel" />-->
 
-<!--        <ch.deletescape.lawnchair.sesame.preferences.SesameVersionPreference-->
-<!--            android:key="sesame_version"-->
-<!--            android:title="@string/sesame_version" />-->
-<!--    </ch.deletescape.lawnchair.preferences.StyledPreferenceCategory>-->
+    <!--        <ch.deletescape.lawnchair.sesame.preferences.SesameVersionPreference-->
+    <!--            android:key="sesame_version"-->
+    <!--            android:title="@string/sesame_version" />-->
+    <!--    </ch.deletescape.lawnchair.preferences.StyledPreferenceCategory>-->
 
     <ch.deletescape.lawnchair.preferences.StyledPreferenceCategory
-        app:iconSpaceReserved="false"
-        android:title="@string/google">
-
-        <ch.deletescape.lawnchair.preferences.StyledSwitchPreferenceCompat
-            android:defaultValue="true"
-            android:key="pref_enable_minus_one"
-            app:iconSpaceReserved="false"
-            android:title="@string/title_show_google_app"
-            app:controllerClass=".MinusOneController"/>
+        android:title="@string/google"
+        app:iconSpaceReserved="false">
 
         <ListPreference
             android:defaultValue="1"
-            app:iconSpaceReserved="false"
+            android:dependency="pref_enable_minus_one"
             android:entries="@array/feedThemes"
             android:entryValues="@array/feedThemeValues"
             android:key="pref_feedTheme"
             android:persistent="true"
             android:summary="%s"
             android:title="@string/feed_theme_pref_title"
-            android:dependency="pref_enable_minus_one"
-            app:controllerClass=".GFeedBackgroundController"/>
+            app:controllerClass=".GFeedBackgroundController"
+            app:iconSpaceReserved="false" />
+
+        <ch.deletescape.lawnchair.preferences.StyledSwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="pref_enable_minus_one"
+            android:title="@string/title_show_google_app"
+            app:controllerClass=".MinusOneController"
+            app:iconSpaceReserved="false" />
+    </ch.deletescape.lawnchair.preferences.StyledPreferenceCategory>
+
+    <ch.deletescape.lawnchair.preferences.StyledPreferenceCategory
+        android:key="prefCat_drawerSuggestions"
+        android:title="@string/caller_id"
+        app:iconSpaceReserved="false">
+
+        <Preference
+            android:key="pref_my_contacts"
+            android:summary="@string/my_contacts_details"
+            android:title="@string/my_contacts"
+            app:iconSpaceReserved="false" />
     </ch.deletescape.lawnchair.preferences.StyledPreferenceCategory>
 
     <ch.deletescape.lawnchair.preferences.StyledPreferenceCategory
         android:title="@string/customnavbar"
-        app:iconSpaceReserved="false"
-        app:controllerClass=".CustomNavBarIntegrationController">
+        app:controllerClass=".CustomNavBarIntegrationController"
+        app:iconSpaceReserved="false">
 
         <ch.deletescape.lawnchair.customnavbar.preferences.CustomNavBarIntegrationPreference
             android:key="cnb_integration"
-            app:iconSpaceReserved="false"
-            android:title="@string/customnavbar_back_hiding_desc" />
+            android:title="@string/customnavbar_back_hiding_desc"
+            app:iconSpaceReserved="false" />
     </ch.deletescape.lawnchair.preferences.StyledPreferenceCategory>
 
 </androidx.preference.PreferenceScreen>

@@ -340,7 +340,7 @@
     <!-- Section 8 -->
 
     <string name="pref_integrations">Plugins</string>
-    <string name="pref_integrations_summary">Sesame Shortcuts, Google Feed</string>
+    <string name="pref_integrations_summary">Caller ID, Google Feed</string>
 
     <string name="sesame">Sesame</string>
 
