@@ -37,9 +37,6 @@ import ch.deletescape.lawnchair.sesame.Sesame
 import ch.deletescape.lawnchair.smartspace.LawnchairSmartspaceController
 import ch.deletescape.lawnchair.theme.ThemeManager
 import ch.deletescape.lawnchair.util.extensions.d
-import ch.deletescape.lawnchair.util.myUtils.Constants
-import ch.deletescape.lawnchair.util.myUtils.Constants.APP_OPEN_COUNT
-import ch.deletescape.lawnchair.util.myUtils.Constants.getSPreferences
 import com.android.launcher3.BuildConfig
 import com.android.launcher3.R
 import com.android.launcher3.Utilities
@@ -63,12 +60,6 @@ class LawnchairApp : Application() {
     val recentsEnabled by lazy { checkRecentsComponent() }
     var accessibilityService: LawnchairAccessibilityService? = null
 
-    private val mFirebaseRemoteConfig: FirebaseRemoteConfig? = null
-    private var database: FirebaseDatabase? = null
-    private var myRe: DatabaseReference? = null
-
-    private var interstitialAd: InterstitialAd? = null
-
     init {
         d("Hidden APIs allowed: ${Utilities.HIDDEN_APIS_ALLOWED}")
     }
@@ -88,51 +79,6 @@ class LawnchairApp : Application() {
 
         //        Intent intent = new Intent(this, GCMRegistrationIntentService.class);
         //        startService(intent);
-        database = FirebaseDatabase.getInstance()
-        myRe = database!!.getReference()
-
-        interstitialAd = InterstitialAd(this, "1238753982967772_1238768376299666")
-
-        myRe!!.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val map = dataSnapshot.value as Map<String, Any>?
-                APP_OPEN_COUNT = (map!!["app_open_count"].toString() + "").toInt()
-                Constants.getSPreferences(this@LawnchairApp).setAppOpenedCount()
-                if (getSPreferences(this@LawnchairApp).getAppOpenedCount() >= APP_OPEN_COUNT) {
-                    try {
-                        interstitialAd!!.loadAd(interstitialAd!!.buildLoadAdConfig().withAdListener(object : InterstitialAdListener{
-                            override fun onError(p0: Ad?, p1: AdError?) {
-
-                            }
-
-                            override fun onAdLoaded(p0: Ad?) {
-                                interstitialAd!!.show();
-                            }
-
-                            override fun onAdClicked(p0: Ad?) {
-
-                            }
-
-                            override fun onLoggingImpression(p0: Ad?) {
-
-                            }
-
-                            override fun onInterstitialDisplayed(p0: Ad?) {
-
-                            }
-
-                            override fun onInterstitialDismissed(p0: Ad?) {
-
-                            }
-                        }).build())
-                    } catch (e: Exception) {
-                    }
-                    getSPreferences(this@LawnchairApp).setAppOpenedCountToZero()
-                }
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {}
-        })
     }
 
     fun onLauncherAppStateCreated() {

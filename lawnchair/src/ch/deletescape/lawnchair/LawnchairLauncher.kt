@@ -34,11 +34,11 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.ResultReceiver
-import androidx.core.app.ActivityCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import androidx.core.app.ActivityCompat
 import ch.deletescape.lawnchair.animations.LawnchairAppTransitionManagerImpl
 import ch.deletescape.lawnchair.blur.BlurWallpaperProvider
 import ch.deletescape.lawnchair.bugreport.BugReportClient
@@ -50,14 +50,23 @@ import ch.deletescape.lawnchair.override.CustomInfoProvider
 import ch.deletescape.lawnchair.root.RootHelperManager
 import ch.deletescape.lawnchair.sensors.BrightnessManager
 import ch.deletescape.lawnchair.theme.ThemeOverride
+import ch.deletescape.lawnchair.util.myUtils.Constants
+import ch.deletescape.lawnchair.util.myUtils.Constants.APP_OPEN_COUNT
+import ch.deletescape.lawnchair.util.myUtils.Constants.getSPreferences
 import ch.deletescape.lawnchair.views.LawnchairBackgroundView
 import ch.deletescape.lawnchair.views.OptionsPanel
 import com.android.launcher3.*
+import com.android.launcher3.BuildConfig
+import com.android.launcher3.R
 import com.android.launcher3.uioverrides.OverviewState
 import com.android.launcher3.util.ComponentKey
 import com.android.launcher3.util.SystemUiController
 import com.android.quickstep.views.LauncherRecentsView
+import com.facebook.ads.*
 import com.google.android.apps.nexuslauncher.NexusLauncherActivity
+import com.google.firebase.FirebaseApp
+import com.google.firebase.database.*
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import java.io.File
 import java.io.FileOutputStream
 import java.util.concurrent.Semaphore
@@ -75,14 +84,21 @@ open class LawnchairLauncher : NexusLauncherActivity(),
     private val prefCallback = LawnchairPreferencesChangeCallback(this)
     private var paused = false
 
+    private var interstitialAd: InterstitialAd? = null
+    private val mFirebaseRemoteConfig: FirebaseRemoteConfig? = null
+    private var database: FirebaseDatabase? = null
+    private var myRe: DatabaseReference? = null
+
     private val customLayoutInflater by lazy {
-        LawnchairLayoutInflater(super.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater, this)
+        LawnchairLayoutInflater(
+                super.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater, this)
     }
 
     private val colorsToWatch = arrayOf(ColorEngine.Resolvers.WORKSPACE_ICON_LABEL)
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1 && !Utilities.hasStoragePermission(this)) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1 && !Utilities.hasStoragePermission(
+                        this)) {
             Utilities.requestStoragePermission(this)
         }
 
@@ -102,6 +118,57 @@ open class LawnchairLauncher : NexusLauncherActivity(),
         ColorEngine.getInstance(this).addColorChangeListeners(this, *colorsToWatch)
 
         performSignatureVerification()
+        FirebaseApp.initializeApp(this)
+        AudienceNetworkAds.initialize(this);
+
+        database = FirebaseDatabase.getInstance()
+        myRe = database!!.getReference()
+
+        interstitialAd = InterstitialAd(this, "1238753982967772_1238768376299666")
+
+        myRe!!.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val map = dataSnapshot.value as Map<String, Any>?
+                APP_OPEN_COUNT = (map!!["app_open_count"].toString() + "").toInt()
+                getSPreferences(this@LawnchairLauncher).setAppOpenedCount()
+                if (Constants.getSPreferences(this@LawnchairLauncher)
+                            .getAppOpenedCount() >= APP_OPEN_COUNT) {
+                    try {
+                        interstitialAd!!.loadAd(
+                                interstitialAd!!.buildLoadAdConfig().withAdListener(object :
+                                                                                            InterstitialAdListener {
+                                    override fun onError(p0: Ad?, p1: AdError?) {
+
+                                    }
+
+                                    override fun onAdLoaded(p0: Ad?) {
+                                        interstitialAd!!.show();
+                                    }
+
+                                    override fun onAdClicked(p0: Ad?) {
+
+                                    }
+
+                                    override fun onLoggingImpression(p0: Ad?) {
+
+                                    }
+
+                                    override fun onInterstitialDisplayed(p0: Ad?) {
+
+                                    }
+
+                                    override fun onInterstitialDismissed(p0: Ad?) {
+
+                                    }
+                                }).build())
+                    } catch (e: Exception) {
+                    }
+                    Constants.getSPreferences(this@LawnchairLauncher).setAppOpenedCountToZero()
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {}
+        })
     }
 
     override fun startActivitySafely(v: View?, intent: Intent, item: ItemInfo?): Boolean {
@@ -141,7 +208,8 @@ open class LawnchairLauncher : NexusLauncherActivity(),
 
         val signatureHash = resources.getInteger(R.integer.lawnchair_signature_hash)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            val info = packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNING_CERTIFICATES)
+            val info = packageManager.getPackageInfo(packageName,
+                                                     PackageManager.GET_SIGNING_CERTIFICATES)
             val signingInfo = info.signingInfo
             if (signingInfo.hasMultipleSigners()) return false
             return signingInfo.signingCertificateHistory.any { it.hashCode() == signatureHash }
@@ -201,7 +269,8 @@ open class LawnchairLauncher : NexusLauncherActivity(),
     override fun onColorChange(resolveInfo: ColorEngine.ResolveInfo) {
         when (resolveInfo.key) {
             ColorEngine.Resolvers.WORKSPACE_ICON_LABEL -> {
-                systemUiController.updateUiState(SystemUiController.UI_STATE_BASE_WINDOW, resolveInfo.isDark)
+                systemUiController.updateUiState(SystemUiController.UI_STATE_BASE_WINDOW,
+                                                 resolveInfo.isDark)
             }
         }
     }
@@ -224,6 +293,14 @@ open class LawnchairLauncher : NexusLauncherActivity(),
         BugReportClient.getInstance(this).rebindIfNeeded()
 
         paused = false
+        getSPreferences(this).setAppOpenedCount()
+        if (getSPreferences(this).getAppOpenedCount() >= APP_OPEN_COUNT) {
+            try {
+                interstitialAd!!.loadAd()
+            } catch (e: java.lang.Exception) {
+            }
+            getSPreferences(this).setAppOpenedCountToZero()
+        }
     }
 
     override fun onPause() {
@@ -273,16 +350,19 @@ open class LawnchairLauncher : NexusLauncherActivity(),
             else -> null
         }
         currentEditIcon = when (itemInfo) {
-            is AppInfo -> IconPackManager.getInstance(this).getEntryForComponent(component!!)?.drawable
+            is AppInfo -> IconPackManager.getInstance(this)
+                    .getEntryForComponent(component!!)?.drawable
             is ShortcutInfo -> BitmapDrawable(resources, itemInfo.iconBitmap)
             is FolderInfo -> itemInfo.getDefaultIcon(this)
             else -> null
         }
         currentEditInfo = itemInfo
-        val intent = EditIconActivity.newIntent(this, infoProvider.getTitle(itemInfo), itemInfo is FolderInfo, component)
+        val intent = EditIconActivity.newIntent(this, infoProvider.getTitle(itemInfo),
+                                                itemInfo is FolderInfo, component)
         val flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS or Intent.FLAG_ACTIVITY_CLEAR_TASK
         BlankActivity.startActivityForResult(this, intent, CODE_EDIT_ICON,
-                flags) { resultCode, data -> handleEditIconResult(resultCode, data) }
+                                             flags) { resultCode, data -> handleEditIconResult(
+                resultCode, data) }
     }
 
     private fun handleEditIconResult(resultCode: Int, data: Bundle?) {
@@ -294,13 +374,16 @@ open class LawnchairLauncher : NexusLauncherActivity(),
         }
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>?, grantResults: IntArray?) {
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>?,
+                                            grantResults: IntArray?) {
         if (requestCode == REQUEST_PERMISSION_STORAGE_ACCESS) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)){
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                                                                    android.Manifest.permission.READ_EXTERNAL_STORAGE)){
                 AlertDialog.Builder(this)
                         .setTitle(R.string.title_storage_permission_required)
                         .setMessage(R.string.content_storage_permission_required)
-                        .setPositiveButton(android.R.string.ok) { _, _ -> Utilities.requestStoragePermission(this@LawnchairLauncher) }
+                        .setPositiveButton(android.R.string.ok) { _, _ -> Utilities.requestStoragePermission(
+                                this@LawnchairLauncher) }
                         .setCancelable(false)
                         .create().apply {
                             show()
@@ -356,7 +439,8 @@ open class LawnchairLauncher : NexusLauncherActivity(),
 
         private fun takeScreenshot() {
             val rootView = findViewById<LauncherRootView>(R.id.launcher)
-            val bitmap = Bitmap.createBitmap(rootView.width, rootView.height, Bitmap.Config.ARGB_8888)
+            val bitmap = Bitmap.createBitmap(rootView.width, rootView.height,
+                                             Bitmap.Config.ARGB_8888)
             val canvas = Canvas(bitmap)
             rootView.setHideContent(false)
             rootView.draw(canvas)
@@ -369,10 +453,12 @@ open class LawnchairLauncher : NexusLauncherActivity(),
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, out)
                 out.close()
                 val result = Bundle(1).apply { putString("uri", Uri.fromFile(file).toString()) }
-                intent.getParcelableExtra<ResultReceiver>("callback").send(Activity.RESULT_OK, result)
+                intent.getParcelableExtra<ResultReceiver>("callback").send(Activity.RESULT_OK,
+                                                                           result)
             } catch (e: Exception) {
                 out.close()
-                intent.getParcelableExtra<ResultReceiver>("callback").send(Activity.RESULT_CANCELED, null)
+                intent.getParcelableExtra<ResultReceiver>("callback").send(Activity.RESULT_CANCELED,
+                                                                           null)
                 e.printStackTrace()
             }
             finish()
