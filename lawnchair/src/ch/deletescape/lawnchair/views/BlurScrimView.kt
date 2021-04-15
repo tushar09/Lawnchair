@@ -23,6 +23,7 @@ import android.graphics.drawable.Drawable
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import ch.deletescape.lawnchair.LawnchairPreferences
 import ch.deletescape.lawnchair.blur.BlurDrawable
@@ -309,6 +310,7 @@ class BlurScrimView(context: Context, attrs: AttributeSet) : ShelfScrimView(cont
                     0f, SCRIM_CATCHUP_THRESHOLD, 0f, 1f, Interpolators.LINEAR), 0f, 1f)
             statusBarPaint.alpha = ((1 - scrimProgress) * 97).toInt()
             canvas.drawRect(0f, 0f, width.toFloat(), insets.top.toFloat(), statusBarPaint)
+
         }
 
         if (shouldDrawDebug) {

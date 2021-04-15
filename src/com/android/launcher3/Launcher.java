@@ -57,6 +57,8 @@ import android.os.StrictMode;
 import android.os.StrictMode.OnVmViolationListener;
 import android.os.UserHandle;
 import android.os.strictmode.Violation;
+import android.view.DragEvent;
+import android.view.View.OnDragListener;
 import androidx.annotation.Nullable;
 import android.text.TextUtils;
 import android.text.method.TextKeyListener;
@@ -1231,6 +1233,13 @@ public class Launcher extends BaseDraggingActivity implements LauncherExterns,
 
     @Override
     public DragLayer getDragLayer() {
+        mDragLayer.setOnDragListener(new OnDragListener() {
+            @Override
+            public boolean onDrag(View v, DragEvent event) {
+                Log.e("drag", "drag");
+                return false;
+            }
+        });
         return mDragLayer;
     }
 

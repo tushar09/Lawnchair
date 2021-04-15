@@ -28,11 +28,13 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Process;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
 
 import ch.deletescape.lawnchair.LawnchairUtilsKt;
+import ch.deletescape.lawnchair.util.myUtils.Constants;
 import com.android.launcher3.AppInfo;
 import com.android.launcher3.BubbleTextView;
 import com.android.launcher3.FolderInfo;
@@ -229,6 +231,7 @@ public class ItemClickHandler {
     }
 
     private static void startAppShortcutOrInfoActivity(View v, ItemInfo item, Launcher launcher) {
+
         Intent intent;
         if (item instanceof PromiseAppInfo) {
             PromiseAppInfo promiseAppInfo = (PromiseAppInfo) item;
@@ -239,6 +242,7 @@ public class ItemClickHandler {
         if (intent == null) {
             throw new IllegalArgumentException("Input must have a valid intent");
         }
+        //Log.e("package", intent. + " sdfd");
         if (item instanceof ShortcutInfo) {
             ShortcutInfo si = (ShortcutInfo) item;
             if (si.hasStatusFlag(ShortcutInfo.FLAG_SUPPORTS_WEB_UI)
@@ -251,6 +255,12 @@ public class ItemClickHandler {
                 intent.setPackage(null);
             }
         }
+
         launcher.startActivitySafely(v, intent, item);
+        Log.e("app start", "here");
+        try{
+            Constants.getSPreferences(v.getContext()).setAppStartTime();
+        }catch (Exception e){}
+
     }
 }

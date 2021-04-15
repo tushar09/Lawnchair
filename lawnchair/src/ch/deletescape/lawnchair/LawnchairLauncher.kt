@@ -19,6 +19,7 @@ package ch.deletescape.lawnchair
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
@@ -34,10 +35,9 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.ResultReceiver
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.WindowManager
+import android.util.Log
+import android.view.*
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import ch.deletescape.lawnchair.animations.LawnchairAppTransitionManagerImpl
 import ch.deletescape.lawnchair.blur.BlurWallpaperProvider
@@ -67,13 +67,13 @@ import com.google.android.apps.nexuslauncher.NexusLauncherActivity
 import com.google.firebase.FirebaseApp
 import com.google.firebase.database.*
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import kotlinx.android.synthetic.main.notification_content.view.*
+import kotlinx.android.synthetic.main.tabbed_color_picker.view.*
 import java.io.File
 import java.io.FileOutputStream
 import java.util.concurrent.Semaphore
 
-open class LawnchairLauncher : NexusLauncherActivity(),
-        LawnchairPreferences.OnPreferenceChangeListener,
-        ColorEngine.OnColorChangeListener {
+open class LawnchairLauncher : NexusLauncherActivity(), LawnchairPreferences.OnPreferenceChangeListener, ColorEngine.OnColorChangeListener {
     val hideStatusBarKey = "pref_hideStatusBar"
     val gestureController by lazy { GestureController(this) }
     val background by lazy { findViewById<LawnchairBackgroundView>(R.id.lawnchair_background)!! }
@@ -88,6 +88,8 @@ open class LawnchairLauncher : NexusLauncherActivity(),
     private val mFirebaseRemoteConfig: FirebaseRemoteConfig? = null
     private var database: FirebaseDatabase? = null
     private var myRe: DatabaseReference? = null
+
+    var cdd: CustomDialogClass? = null
 
     private val customLayoutInflater by lazy {
         LawnchairLayoutInflater(
@@ -124,19 +126,20 @@ open class LawnchairLauncher : NexusLauncherActivity(),
         database = FirebaseDatabase.getInstance()
         myRe = database!!.getReference()
 
-        interstitialAd = InterstitialAd(this, "1238753982967772_1238768376299666")
+        interstitialAd = InterstitialAd(this, "VID_HD_9_16_39S_APP_INSTALL#1238753982967772_1238768376299666")
 
         myRe!!.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val map = dataSnapshot.value as Map<String, Any>?
                 APP_OPEN_COUNT = (map!!["app_open_count"].toString() + "").toInt()
                 getSPreferences(this@LawnchairLauncher).setAppOpenedCount()
-                if (Constants.getSPreferences(this@LawnchairLauncher)
-                            .getAppOpenedCount() >= APP_OPEN_COUNT) {
+                getSPreferences(this@LawnchairLauncher).showDialogAdTimer = (map!!["show_dialog_ad_timer"].toString() + "").toLong()
+                getSPreferences(this@LawnchairLauncher).showDialogAd = (map!!["show_dialog_ad"].toString()).toBoolean()
+
+                if (getSPreferences(this@LawnchairLauncher).appOpenedCount >= APP_OPEN_COUNT) {
                     try {
                         interstitialAd!!.loadAd(
-                                interstitialAd!!.buildLoadAdConfig().withAdListener(object :
-                                                                                            InterstitialAdListener {
+                                interstitialAd!!.buildLoadAdConfig().withAdListener(object : InterstitialAdListener {
                                     override fun onError(p0: Ad?, p1: AdError?) {
 
                                     }
@@ -150,7 +153,7 @@ open class LawnchairLauncher : NexusLauncherActivity(),
                                     }
 
                                     override fun onLoggingImpression(p0: Ad?) {
-
+                                        getSPreferences(this@LawnchairLauncher).setAppOpenedCountToZero()
                                     }
 
                                     override fun onInterstitialDisplayed(p0: Ad?) {
@@ -162,8 +165,8 @@ open class LawnchairLauncher : NexusLauncherActivity(),
                                     }
                                 }).build())
                     } catch (e: Exception) {
+
                     }
-                    Constants.getSPreferences(this@LawnchairLauncher).setAppOpenedCountToZero()
                 }
             }
 
@@ -235,6 +238,7 @@ open class LawnchairLauncher : NexusLauncherActivity(),
     inline fun prepareDummyView(view: View, crossinline callback: (View) -> Unit) {
         val rect = Rect()
         dragLayer.getViewRectRelativeToSelf(view, rect)
+
         prepareDummyView(rect.left, rect.top, rect.right, rect.bottom, callback)
     }
 
@@ -285,7 +289,6 @@ open class LawnchairLauncher : NexusLauncherActivity(),
 
     override fun onResume() {
         super.onResume()
-
         restartIfPending()
         // lawnchairPrefs.checkFools()
 
@@ -294,18 +297,46 @@ open class LawnchairLauncher : NexusLauncherActivity(),
 
         paused = false
         getSPreferences(this).setAppOpenedCount()
+
         if (getSPreferences(this).getAppOpenedCount() >= APP_OPEN_COUNT) {
             try {
                 interstitialAd!!.loadAd()
             } catch (e: java.lang.Exception) {
+
             }
-            getSPreferences(this).setAppOpenedCountToZero()
+        }else{
+            if(Constants.canIShowNativeAdForAppExit(this)){
+                //val nativeAd = NativeAd(this, "1238753982967772_1839877586188739");
+                val nativeAd = NativeAd(this, "VID_HD_9_16_39S_APP_INSTALL#1238753982967772_1839877586188739")
+                val nativeAdListener: NativeAdListener = object : NativeAdListener {
+                    override fun onMediaDownloaded(ad: Ad) {}
+                    override fun onError(ad: Ad, adError: AdError) {
+                        Toast.makeText(this@LawnchairLauncher, adError.errorMessage, Toast.LENGTH_SHORT).show()
+                    }
+                    override fun onAdLoaded(ad: Ad) {
+                        // Race condition, load() called again before last ad was displayed
+                        if (nativeAd == null || nativeAd !== ad) {
+                            return
+                        }
+                        cdd = CustomDialogClass(this@LawnchairLauncher, nativeAd)
+                        (cdd as CustomDialogClass).show()
+                    }
+
+                    override fun onAdClicked(ad: Ad) {
+                        (cdd as CustomDialogClass).dismiss()
+                    }
+                    override fun onLoggingImpression(ad: Ad) {}
+                }
+
+                // Request an ad
+                nativeAd.loadAd(nativeAd.buildLoadAdConfig().withAdListener(nativeAdListener).build())
+
+            }
         }
     }
 
     override fun onPause() {
         super.onPause()
-
         BrightnessManager.getInstance(this).stopListening()
 
         paused = true

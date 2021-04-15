@@ -51,7 +51,7 @@ android {
             keyPassword localProps.getProperty("keyPass") ?:System.getenv("KEY_PASSWORD")
         }
         config {
-            storeFile file('/mnt/9898E8EA98E8C838/Desk/MyLauncher.jks')
+            storeFile file('../MyLauncher.jks')
             storePassword 'manhunter)(*'
             keyAlias = 'SHAH MD MONIRUL ISLAM'
             keyPassword 'manhunter)(*'
@@ -72,8 +72,8 @@ android {
 //            versionName "2.0"
 //        }
 
-        versionCode 22
-        versionName "4.0.2"
+        versionCode 23
+        versionName "4.0.3"
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         vectorDrawables.useSupportLibrary = true

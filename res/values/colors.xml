@@ -85,4 +85,5 @@
 
     <color name="all_apps_label_text">#61000000</color>
     <color name="all_apps_label_text_dark">#61ffffff</color>
+    <color name="colorAd">#4286F4</color>
 </resources>

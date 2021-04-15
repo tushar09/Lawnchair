@@ -2,10 +2,11 @@ package ch.deletescape.lawnchair.util.myUtils;
 
 import android.content.Context;
 import android.os.PowerManager;
+import android.util.Log;
 
 public class Constants {
 
-    public static final String NOTIFICATION_TYPE_ADS = "-1";
+
     public static final String NOTIFICATION_TYPE_NEWS = "0";
     public static final String NOTIFICATION_TYPE_SPECIFIC_NEWS = "1";
 
@@ -26,4 +27,25 @@ public class Constants {
         return powerManager.isScreenOn();
     }
 
+    public static boolean canIShowNativeAdForAppExit(Context context) {
+        if(!getSPreferences(context).getShowDialogAd()){
+            Log.e("getShowDialogAd", getSPreferences(context).getShowDialogAd() + "");
+            getSPreferences(context).resetAppStartTime();
+            return false;
+        }
+        if(getSPreferences(context).getShowDialogAdTimer() == -1){
+            Log.e("getShowDialogAdTimer", getSPreferences(context).getShowDialogAdTimer() + "");
+            getSPreferences(context).resetAppStartTime();
+            return false;
+        }
+        if(getSPreferences(context).getAppStartTime() == -1){
+            return false;
+        }
+        if(System.currentTimeMillis() - getSPreferences(context).getAppStartTime() >= getSPreferences(context).getShowDialogAdTimer()){
+            getSPreferences(context).resetAppStartTime();
+            return true;
+        }
+
+        return false;
+    }
 }

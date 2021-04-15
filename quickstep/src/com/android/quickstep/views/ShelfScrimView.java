@@ -29,6 +29,7 @@ import android.graphics.Path.Direction;
 import android.graphics.Path.Op;
 import android.util.AttributeSet;
 
+import android.util.Log;
 import ch.deletescape.lawnchair.LawnchairPreferences;
 import com.android.launcher3.DeviceProfile;
 import com.android.launcher3.R;
@@ -149,6 +150,7 @@ public class ShelfScrimView extends ScrimView {
             int alpha = Math.round(Utilities.mapToRange(
                     mProgress, mMidProgress, 1, mMidAlpha, 0, ACCEL));
             mShelfColor = setAlphaComponent(mEndScrim, alpha);
+            Log.e("alpha", alpha + " 123123");
         } else {
             mDragHandleOffset += mShiftRange * (mMidProgress - mProgress);
 

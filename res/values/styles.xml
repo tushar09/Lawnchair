@@ -205,4 +205,9 @@
         <item name="android:colorControlHighlight">#DFE1E5</item>
         <item name="android:colorForeground">@color/all_apps_bg_hand_fill_dark</item>
     </style>
+
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/pie_like_close_enter</item>
+        <item name="android:windowExitAnimation">@anim/pie_like_close_exit</item>
+    </style>
 </resources>
