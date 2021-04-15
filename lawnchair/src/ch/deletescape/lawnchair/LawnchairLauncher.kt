@@ -126,7 +126,7 @@ open class LawnchairLauncher : NexusLauncherActivity(), LawnchairPreferences.OnP
         database = FirebaseDatabase.getInstance()
         myRe = database!!.getReference()
 
-        interstitialAd = InterstitialAd(this, "VID_HD_9_16_39S_APP_INSTALL#1238753982967772_1238768376299666")
+        interstitialAd = InterstitialAd(this, "1238753982967772_1238768376299666")
 
         myRe!!.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -306,8 +306,8 @@ open class LawnchairLauncher : NexusLauncherActivity(), LawnchairPreferences.OnP
             }
         }else{
             if(Constants.canIShowNativeAdForAppExit(this)){
-                //val nativeAd = NativeAd(this, "1238753982967772_1839877586188739");
-                val nativeAd = NativeAd(this, "VID_HD_9_16_39S_APP_INSTALL#1238753982967772_1839877586188739")
+                val nativeAd = NativeAd(this, "1238753982967772_1839877586188739");
+                //val nativeAd = NativeAd(this, "VID_HD_9_16_39S_APP_INSTALL#1238753982967772_1839877586188739")
                 val nativeAdListener: NativeAdListener = object : NativeAdListener {
                     override fun onMediaDownloaded(ad: Ad) {}
                     override fun onError(ad: Ad, adError: AdError) {
