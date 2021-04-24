@@ -311,7 +311,7 @@ open class LawnchairLauncher : NexusLauncherActivity(), LawnchairPreferences.OnP
                 val nativeAdListener: NativeAdListener = object : NativeAdListener {
                     override fun onMediaDownloaded(ad: Ad) {}
                     override fun onError(ad: Ad, adError: AdError) {
-                        Toast.makeText(this@LawnchairLauncher, adError.errorMessage, Toast.LENGTH_SHORT).show()
+
                     }
                     override fun onAdLoaded(ad: Ad) {
                         // Race condition, load() called again before last ad was displayed

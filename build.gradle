@@ -72,8 +72,8 @@ android {
 //            versionName "2.0"
 //        }
 
-        versionCode 24
-        versionName "4.0.4"
+        versionCode 25
+        versionName "4.0.5"
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         vectorDrawables.useSupportLibrary = true
@@ -335,7 +335,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:4.0.0-RC1'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
 
-    implementation 'com.facebook.android:audience-network-sdk:6.+'
+    implementation 'com.facebook.android:audience-network-sdk:6.3.+'
     implementation platform('com.google.firebase:firebase-bom:26.5.0')
     implementation 'com.google.firebase:firebase-database-ktx'
     implementation 'com.google.firebase:firebase-config-ktx'
