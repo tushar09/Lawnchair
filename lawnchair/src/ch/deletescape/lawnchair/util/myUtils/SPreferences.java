@@ -8,6 +8,7 @@ public class SPreferences {
     protected final static String APP_START_TIME = "appStartTime";
     public static final String SHOW_DIALOG_AD_TIMER = "showDialogAdTimer";
     public static final String SHOW_DIALOG_AD = "showDialogAd";
+    public static final String IS_PAID = "isPaid";
 
     protected SharedPreferences sp;
 
@@ -55,6 +56,14 @@ public class SPreferences {
 
     public boolean getShowDialogAd(){
         return sp.getBoolean(SHOW_DIALOG_AD, false);
+    }
+
+    public void setIsPaid(boolean show){
+        sp.edit().putBoolean(IS_PAID, show).commit();
+    }
+
+    public boolean isPaid(){
+        return sp.getBoolean(IS_PAID, false);
     }
 
 }

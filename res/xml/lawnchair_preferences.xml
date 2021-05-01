@@ -102,6 +102,28 @@
             android:targetClass="ch.deletescape.lawnchair.backup.BackupListActivity"/>
     </ch.deletescape.lawnchair.preferences.StyledIconPreference>
 
+    <ch.deletescape.lawnchair.preferences.StyledIconPreference
+        android:key="removeAd"
+        android:title="Remove Ads"
+        android:summary="Buy Premium version to remove ads"
+        android:layout="@layout/home_preference"
+        android:icon="@drawable/ic_premium">
+        <intent
+            android:targetPackage="@string/application_id"
+            android:targetClass="ch.deletescape.lawnchair.purchase.PurchaseActivity"/>
+    </ch.deletescape.lawnchair.preferences.StyledIconPreference>
+
+<!--    <ch.deletescape.lawnchair.preferences.StyledPreferenceCategory-->
+<!--        android:key="prefCat_drawerSuggestions"-->
+<!--        android:title="@string/caller_id">-->
+
+<!--        <Preference-->
+<!--            android:icon="@drawable/ic_premium"-->
+<!--            android:key="pref_my_contacts"-->
+<!--            android:summary="@string/my_contacts_details"-->
+<!--            android:title="@string/my_contacts" />-->
+<!--    </ch.deletescape.lawnchair.preferences.StyledPreferenceCategory>-->
+
 <!--    <ch.deletescape.lawnchair.settings.ui.SubPreference-->
 <!--        android:key="developerOptions"-->
 <!--        android:icon="@drawable/ic_settings_development"-->

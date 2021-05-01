@@ -224,6 +224,13 @@
         <item name="buttonStyle">@style/SettingsTheme.V2.Button</item>
         <item name="android:buttonStyle">@style/SettingsTheme.V2.Button</item>
     </style>
+    <style name="SettingsTheme.V2.Dialog2" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/dialog_material_background</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowNoTitle">true</item>
+        <item name="buttonStyle">@style/SettingsTheme.V2.Button</item>
+        <item name="android:buttonStyle">@style/SettingsTheme.V2.Button</item>
+    </style>
 
     <style name="SettingsTheme.V2.Dark" parent="@style/Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@color/settings_background_dark</item>

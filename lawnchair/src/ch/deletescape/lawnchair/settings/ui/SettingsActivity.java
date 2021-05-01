@@ -32,6 +32,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.XmlRes;
 import androidx.preference.SwitchPreference;
@@ -87,6 +88,7 @@ import ch.deletescape.lawnchair.settings.ui.search.SettingsSearchActivity;
 import ch.deletescape.lawnchair.smartspace.OnboardingProvider;
 import ch.deletescape.lawnchair.theme.ThemeOverride;
 import ch.deletescape.lawnchair.theme.ThemeOverride.ThemeSet;
+import ch.deletescape.lawnchair.util.myUtils.Constants;
 import ch.deletescape.lawnchair.views.SpringRecyclerView;
 import com.android.launcher3.BuildConfig;
 import com.android.launcher3.LauncherFiles;
@@ -152,6 +154,7 @@ public class SettingsActivity extends SettingsBaseActivity implements
     private boolean hasPreview = false;
 
     private InterstitialAd interstitialAd;
+    private LinearLayout adContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -192,15 +195,21 @@ public class SettingsActivity extends SettingsBaseActivity implements
 
         Utilities.getDevicePrefs(this).edit().putBoolean(OnboardingProvider.PREF_HAS_OPENED_SETTINGS, true).apply();
 
-        AdView adView = new AdView(this, "1238753982967772_1801533253356506", AdSize.BANNER_HEIGHT_50);
-        LinearLayout adContainer = (LinearLayout) findViewById(R.id.banner_container);
-        adContainer.addView(adView);
-        adView.loadAd();
-
-        if(showSearch){
-            interstitialAd = new InterstitialAd(this, "1238753982967772_1238768376299666");
-            interstitialAd.loadAd();
+        if(!Constants.getSPreferences(this).isPaid()){
+            AdView adView = new AdView(this, "1238753982967772_1801533253356506", AdSize.BANNER_HEIGHT_50);
+            adContainer = (LinearLayout) findViewById(R.id.banner_container);
+            adContainer.addView(adView);
+            adView.loadAd();
         }
+
+
+        if(!Constants.getSPreferences(this).isPaid()){
+            if(showSearch){
+                interstitialAd = new InterstitialAd(this, "1238753982967772_1238768376299666");
+                interstitialAd.loadAd();
+            }
+        }
+
 
     }
 
@@ -239,6 +248,11 @@ public class SettingsActivity extends SettingsBaseActivity implements
     @Override
     protected void onResume() {
         super.onResume();
+        if(Constants.getSPreferences(this).isPaid()){
+            if(adContainer != null){
+                adContainer.setVisibility(View.GONE);
+            }
+        }
 
         if (shouldShowSearch()) {
             Toolbar toolbar = findViewById(R.id.search_action_bar);
@@ -392,9 +406,12 @@ public class SettingsActivity extends SettingsBaseActivity implements
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if(interstitialAd != null && interstitialAd.isAdLoaded()){
-            interstitialAd.show();
+        if(!Constants.getSPreferences(this).isPaid()){
+            if(interstitialAd != null && interstitialAd.isAdLoaded()){
+                interstitialAd.show();
+            }
         }
+
     }
 
     @Override
@@ -843,6 +860,9 @@ public class SettingsActivity extends SettingsBaseActivity implements
                     } catch (android.content.ActivityNotFoundException anfe) {
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
                     }
+                    break;
+                case "removeAd":
+                    Log.e("afs", "dafsdf");
                     break;
                 case "kill":
                     Utilities.killLauncher();

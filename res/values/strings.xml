@@ -350,4 +350,6 @@
     <string name="caller_id">Caller ID</string>
     <string name="my_contacts_details">My Contact, a powerfull caller id with more 3 billions contacs</string>
     <string name="my_contacts">My Contacts</string>
+    <string name="license">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlVzIRQbJ3IH9C5c4zAQnzbggn8jaNetc1a7sIQDlXXAl9goxUx7QXVsW223mQCdGOAv4h90mhH8jqoo7+oBAbQO77xc7DePAkGMn9/w68WoY/Dpuiqb9NdOnL/+Cp40p1KoJv/0A1Fkh72gsORedNCW1aYopRNivAYgYAOnsarAV05doGmHrSe/5firigfPmKhEKxX11M7lvuN0zjNqMhRFw2QM/ar8pu5KW/oMyfmxQ6Oa3Afq57qCAifTZbdb72Pa8rrOl96NySj23qjwbjSzpJHqyXQkQ1AqaycWtik7+0aR/iGuYCj5gN9cQrMfUJTit6c4VzEeNRpVwiqdSPwIDAQAB</string>
+    <string name="remove_ad_product_id">premium</string>
 </resources>

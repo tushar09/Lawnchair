@@ -145,7 +145,10 @@ open class LawnchairLauncher : NexusLauncherActivity(), LawnchairPreferences.OnP
                                     }
 
                                     override fun onAdLoaded(p0: Ad?) {
-                                        interstitialAd!!.show();
+                                        if(!getSPreferences(this@LawnchairLauncher).isPaid){
+                                            interstitialAd!!.show();
+                                        }
+
                                     }
 
                                     override fun onAdClicked(p0: Ad?) {
@@ -300,7 +303,10 @@ open class LawnchairLauncher : NexusLauncherActivity(), LawnchairPreferences.OnP
 
         if (getSPreferences(this).getAppOpenedCount() >= APP_OPEN_COUNT) {
             try {
-                interstitialAd!!.loadAd()
+                if(!getSPreferences(this).isPaid){
+                    interstitialAd!!.loadAd()
+                }
+
             } catch (e: java.lang.Exception) {
 
             }

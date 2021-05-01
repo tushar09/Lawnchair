@@ -28,6 +28,9 @@ public class Constants {
     }
 
     public static boolean canIShowNativeAdForAppExit(Context context) {
+        if(getSPreferences(context).isPaid()){
+            return false;
+        }
         if(!getSPreferences(context).getShowDialogAd()){
             Log.e("getShowDialogAd", getSPreferences(context).getShowDialogAd() + "");
             getSPreferences(context).resetAppStartTime();
